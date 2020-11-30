@@ -4,6 +4,34 @@
     justify-content: space-between;
 }
 
+article {
+    max-width: 900px;
+    margin: auto;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    margin-top: 3rem;
+    padding: 1rem;
+    border: 1px solid;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.post-img {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.likes {
+    display: flex;
+}
+
 h1 {
     margin: 0;
 }
@@ -13,7 +41,7 @@ h1 {
 }
 
 .photo-profile {
-    width: 60px;
+    width: 37px;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -24,4 +52,60 @@ h1 {
 section {
     max-width: 800px;
     margin: auto;
+}
+
+.profile {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile > div {
+    display: flex;
+}
+
+.profile > div > p, .profile > p {
+    margin: 0;
+    align-self: center;
+}
+
+
+// COmments
+
+.comments {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.comment-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.username {
+    display: flex;
+    justify-content: space-between;
+}
+
+.username > div {
+    display: flex;
+}
+
+.username > div > p,.username > span  {
+    margin: 0;
+    align-self: center;
+}
+
+
+// Add a comment
+.add-comment > div {
+    display: flex;
+}
+
+textarea {
+    width: 100%;
+}
+
+.add-comment > div > button {
+    background-color: blue;
+    color: #fff;
 }

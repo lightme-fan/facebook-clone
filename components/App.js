@@ -2,21 +2,22 @@ import React, { useState, createContext, useContext } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import DisplayPost from './DisplayPost'
 import Header from './Header'
-import UseContextWithReducer from './UseContextWithReducer'
 
 function App() {
     
     return (
-        <>
+        <article>
             <Header/>
-            <Switch>
-                <Route exact path="/">
-                    Post
-                    <DisplayPost/>
-                </Route>
-                <Route path="/addPost">Add a post</Route>
-            </Switch>   
-        </>
+            <div className='container'>
+                <Switch>
+                    <Route exact path="/">
+                        <DisplayPost/>
+                        {/* <Comment /> */}
+                    </Route>
+                    <Route path="/addPost">Add a post</Route>
+                </Switch>
+            </div>   
+        </article>
     )
 }
 

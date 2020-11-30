@@ -1,14 +1,19 @@
 import React, { useContext } from 'react'
-import { PostContext } from './DisplayPost'
+import { AppContext } from './UseContextWithReducer'
 
 function Comment() {
-    const { feeds } = useContext(PostContext)
-    console.log(feeds);
+
+    const {allPosts, handleChange, handleSubmit} = useContext(AppContext)
+    console.log(allPosts);
 
     return (
-        <div>
-            Comment        
-        </div>
+        <form className='add-comment' onSubmit={handleSubmit}>
+            <label>Add a comment</label><br/>
+            <div>
+                <textarea name='commentText' id="story"rows="2" onChange={handleChange}/>
+                <button>Comment</button>
+            </div>
+        </form>
     )
 }
 

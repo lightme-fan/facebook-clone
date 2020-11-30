@@ -1,10 +1,10 @@
 import React from 'react'
 import { PostContext } from '../components/displayPost'
 
-function PostTemplate({photoProfil, id, imagePost, username, converted, postText, likes, onClick}) {
+function PostTemplate({photoProfil, postId, imagePost, username, converted, postText, likes, onClick}) {
     return (
         <>
-            <div>
+            <div className='profile'>
                 <div>
                     <img className='photo-profile' src={photoProfil} alt={username}/>
                     <p>{username}</p>
@@ -13,14 +13,7 @@ function PostTemplate({photoProfil, id, imagePost, username, converted, postText
             </div>
 
             <p>{postText}</p>
-            <img src={imagePost} alt={username}/>
-
-            <div>
-                <span>{likes} 👍</span><br/>
-                <button onClick={onClick} value={id}>Like</button>
-            </div>
-
-            
+            <img className='post-img' src={imagePost} alt={username}/>
         </>
     )
 }
