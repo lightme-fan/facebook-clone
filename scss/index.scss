@@ -1,0 +1,27 @@
+.header,
+.menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    margin: 0;
+}
+
+.menu > a {
+    margin-left: 2rem;
+}
+
+.photo-profile {
+    width: 60px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+section {
+    max-width: 800px;
+    margin: auto;
+}
