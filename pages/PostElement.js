@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AppContext } from '../components/UseContextWithReducer'
 
-function PostElement({photoProfil, username, converted, imagePost, postText}) {
+function PostElement() {
+    const {state, dispatch} = useContext(AppContext)
+    
     return (
         <div>
-            <div className='profile'>
-                <div>
-                    <img className='photo-profile' src={photoProfil} alt={username}/>
-                    <p>{username}</p>
+            {state.postData.map(post => 
+                <div key={post.postId}>
+                    <p>{post.convertedDate}</p>
+                    <p>{post.postText}</p>
+                    <img className='post-img' src={post.imagePost} alt={post.username}/>
                 </div>
-                <p>{converted}</p>
-            </div>
-            <p>{postText}</p>
-            <img className='post-img' src={imagePost} alt={username}/>
+            )}
         </div>
     )
 }

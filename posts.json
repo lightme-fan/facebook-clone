@@ -1,11 +1,12 @@
 [
     {
         "username": "Fanilo",
+        "userId": "1",
         "photoProfil": "https://bit.ly/3lsTtMc",
         "imagePost": "https://seeklogo.com/images/C/chiken-strong-logo-0CD23797DA-seeklogo.com.png",
         "postText": "Text about image, anything else... Just text... A beautiful image description. You can say whatever you want.",
         "date": 1606725399303,
-        "postId": "1606725399303",
+        "postId": "1",
         "likes": [
             {
                 "totalLike": 1,
@@ -16,13 +17,13 @@
         "comments": [
             {
                 "textComment": "Fantastic!",
-                "id": "1606725399303",
+                "commentId": "1",
                 "date": 1606779068327
             }, 
             {
                 "textComment": "Thanks sis!",
                 "date": 1606779068327,
-                "id": "16067253993034"
+                "commentId": "2"
             }
         ]
     }

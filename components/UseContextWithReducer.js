@@ -7,10 +7,11 @@ const AppContext = createContext()
 const initialValue = {
     postData: [...posts],
     userData: [...username],
+    currentUser: '1'
 }
 
 const appReducer = (state, action) => {
-  const { postData, userData } = state
+  const { postData, userData, currentUser } = state
 
   switch (action.type) {
     case "ADD_NEW_POST": {
@@ -19,8 +20,8 @@ const appReducer = (state, action) => {
     
     case "ADD_COMMENT": {
       const newPosts = postData.map(post => {
-        console.log(post.postId);
-        if (post.postId === action.newComments.id) {
+        if (post.postId !== action.postId) {
+          console.log(post.comments);
           return {
             ...post,
             comments: [...post.comments, action.newComments],
