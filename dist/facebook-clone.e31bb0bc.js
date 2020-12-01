@@ -33853,37 +33853,7 @@ if ("development" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"pages/Comments.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Comments(_ref) {
-  var date = _ref.date,
-      textComment = _ref.textComment,
-      photoProfil = _ref.photoProfil,
-      username = _ref.username;
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "comment-container"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "username"
-  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
-    className: "photo-profile",
-    src: photoProfil,
-    alt: username
-  }), /*#__PURE__*/_react.default.createElement("p", null, username)), /*#__PURE__*/_react.default.createElement("span", null, date)), /*#__PURE__*/_react.default.createElement("p", null, textComment));
-}
-
-var _default = Comments;
-exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"posts.json":[function(require,module,exports) {
+},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"posts.json":[function(require,module,exports) {
 module.exports = [{
   "username": "Fanilo",
   "photoProfil": "https://bit.ly/3lsTtMc",
@@ -33892,7 +33862,8 @@ module.exports = [{
   "date": 1606725399303,
   "postId": "1606725399303",
   "likes": [{
-    "likeId": "1",
+    "totalLike": 1,
+    "likeId": "1606725399303",
     "userId": "1283782987"
   }],
   "comments": [{
@@ -33961,113 +33932,187 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 var AppContext = (0, _react.createContext)();
 exports.AppContext = AppContext;
-var UserContext = (0, _react.createContext)();
+var initialValue = {
+  postData: _toConsumableArray(_posts.default),
+  userData: _toConsumableArray(_username.default)
+};
 
-function appReducer(state, action) {
+var appReducer = function appReducer(state, action) {
+  var postData = state.postData,
+      userData = state.userData;
+
   switch (action.type) {
-    case 'POSTS':
-      {
-        return _posts.default;
-      }
-      ;
-
-    case 'USERNAME':
-      {
-        return _username.default;
-      }
-      ;
-
-    case 'ADD_COMMENT':
-      {
-        var findState = state.find(function (item) {
-          return item.id;
-        });
-        return [].concat(_toConsumableArray(state), [[].concat(_toConsumableArray(action.comments), [action.comments])]);
-      }
-
-    case 'INCREMENT':
+    case "ADD_NEW_POST":
       {
         return _objectSpread(_objectSpread({}, state), {}, {
-          likes: action.likes + 1
+          postData: [].concat(_toConsumableArray(postData), [action.newPost])
+        });
+      }
+
+    case "ADD_COMMENT":
+      {
+        var newPosts = postData.map(function (post) {
+          console.log(post.postId);
+
+          if (post.postId === action.newComments.id) {
+            return _objectSpread(_objectSpread({}, post), {}, {
+              comments: [].concat(_toConsumableArray(post.comments), [action.newComments])
+            });
+          }
+
+          return post;
+        });
+        return _objectSpread(_objectSpread({}, state), {}, {
+          postData: newPosts
+        });
+      }
+
+    case "LIKES":
+      {
+        var _newPosts = postData.map(function (post) {
+          console.log(action.likeId);
+          return _objectSpread(_objectSpread({}, post), {}, {
+            likes: post.likes.map(function (like) {
+              return like.totalLike++;
+            })
+          });
+        });
+
+        return _objectSpread(_objectSpread({}, state), {}, {
+          postData: _newPosts
         });
       }
 
     default:
-      break;
+      {
+        return state;
+      }
   }
-
-  return state;
-}
+};
 
 function UseContextWithReducer(_ref) {
   var children = _ref.children;
 
-  var _useReducer = (0, _react.useReducer)(appReducer, _posts.default),
+  var _useReducer = (0, _react.useReducer)(appReducer, initialValue),
       _useReducer2 = _slicedToArray(_useReducer, 2),
-      allPosts = _useReducer2[0],
+      state = _useReducer2[0],
       dispatch = _useReducer2[1];
 
-  var _useState = (0, _react.useState)(_username.default),
-      _useState2 = _slicedToArray(_useState, 2),
-      userNameData = _useState2[0],
-      setUserName = _useState2[1];
-
-  var actions = {
-    authStateChanged: function authStateChanged(user) {
-      if (user) {
-        dispatch({
-          type: 'POSTS',
-          payload: _posts.default
-        }, {
-          type: 'USERNAME',
-          payload: _username.default
-        });
-      }
+  var postData = state.postData,
+      userData = state.userData;
+  return /*#__PURE__*/_react.default.createElement(AppContext.Provider, {
+    value: {
+      postData: postData,
+      userData: userData,
+      state: state,
+      dispatch: dispatch
     }
-  };
-  var foundUser = userNameData.find(function (user) {
-    return user.id;
-  });
+  }, children);
+}
+},{"react":"node_modules/react/index.js","../posts.json":"posts.json","../username.json":"username.json"}],"pages/AddPostElem.js":[function(require,module,exports) {
+"use strict";
 
-  function handleChange(e) {
-    e.target.name = e.target.value;
-  }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _UseContextWithReducer = require("../components/UseContextWithReducer");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function AddPostElem() {
+  var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
+      state = _useContext.state,
+      dispatch = _useContext.dispatch;
 
   function handleSubmit(e) {
     e.preventDefault();
     var form = e.target;
-    var textareaValue = form.commentText.value;
-    var newComent = {
-      id: Date.now(),
-      textComment: textareaValue,
-      date: Date.now()
+    var newPost = {
+      imagePost: form.image.value,
+      postText: form.postText.value,
+      date: new Date(),
+      postId: Date.now(),
+      likes: [{
+        totalLike: 0,
+        likeId: "1606725399303",
+        userId: Date.now()
+      }],
+      comments: []
     };
     dispatch({
-      type: 'ADD_COMMENT',
-      newComent: newComent
+      type: 'ADD_NEW_POST',
+      newPost: newPost
     });
-    console.log(comment);
-    form.reset(allPosts);
-  }
+  } // https://bit.ly/3qmKNub
 
-  function handleIncreament() {
-    console.log('Increament');
-    dispatch('INCREMENT');
-  }
 
-  return /*#__PURE__*/_react.default.createElement(AppContext.Provider, {
-    value: {
-      allPosts: allPosts,
-      userNameData: userNameData,
-      foundUser: foundUser,
-      actions: actions,
-      handleChange: handleChange,
-      handleSubmit: handleSubmit,
-      handleIncreament: handleIncreament
-    }
-  }, children);
+  return /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/_react.default.createElement("label", null, "Write a Post ", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("textarea", {
+    name: "post",
+    id: "postText",
+    rows: "5"
+  })), /*#__PURE__*/_react.default.createElement("label", null, "Add pictures ", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("input", {
+    type: "url",
+    name: "image"
+  })), " ", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("hr", null), /*#__PURE__*/_react.default.createElement("button", null, "Post"));
 }
-},{"react":"node_modules/react/index.js","../posts.json":"posts.json","../username.json":"username.json"}],"components/Comment.js":[function(require,module,exports) {
+
+var _default = AddPostElem;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../components/UseContextWithReducer":"components/UseContextWithReducer.js"}],"components/AddPost.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = AddPost;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function AddPost(_ref) {
+  var children = _ref.children;
+  return /*#__PURE__*/_react.default.createElement("div", null, children);
+}
+},{"react":"node_modules/react/index.js"}],"pages/Comments.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Comments(_ref) {
+  var date = _ref.date,
+      textComment = _ref.textComment,
+      photoProfil = _ref.photoProfil,
+      username = _ref.username;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "comment-container"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "username"
+  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+    className: "photo-profile",
+    src: photoProfil,
+    alt: username
+  }), /*#__PURE__*/_react.default.createElement("p", null, username)), /*#__PURE__*/_react.default.createElement("span", null, date)), /*#__PURE__*/_react.default.createElement("p", null, textComment));
+}
+
+var _default = Comments;
+exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"components/AddComment.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34083,27 +34128,86 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function Comment() {
+function AddComment() {
   var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
-      allPosts = _useContext.allPosts,
-      handleChange = _useContext.handleChange,
-      handleSubmit = _useContext.handleSubmit;
+      state = _useContext.state,
+      dispatch = _useContext.dispatch;
 
-  console.log(allPosts);
+  var allPosts = state.postData.find(function (post) {
+    return post;
+  });
+
+  function handleSubmitComment(e) {
+    e.preventDefault();
+    var form = e.target;
+    var newComment = {
+      textComment: form.commentText.value,
+      id: "1606725399303",
+      date: 1606779068327
+    };
+    dispatch({
+      type: "ADD_COMMENT",
+      newComments: newComment
+    });
+    form.reset();
+  }
+
   return /*#__PURE__*/_react.default.createElement("form", {
     className: "add-comment",
-    onSubmit: handleSubmit
+    onSubmit: handleSubmitComment
   }, /*#__PURE__*/_react.default.createElement("label", null, "Add a comment"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("textarea", {
     name: "commentText",
-    id: "story",
-    rows: "2",
-    onChange: handleChange
+    rows: "2"
   }), /*#__PURE__*/_react.default.createElement("button", null, "Comment")));
 }
 
-var _default = Comment;
+var _default = AddComment;
 exports.default = _default;
 },{"react":"node_modules/react/index.js","./UseContextWithReducer":"components/UseContextWithReducer.js"}],"pages/LikeContent.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _UseContextWithReducer = require("../components/UseContextWithReducer");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function LikeContent(_ref) {
+  var totalLike = _ref.totalLike,
+      userId = _ref.userId,
+      onClick = _ref.onClick;
+
+  var _useReducer = (0, _react.useReducer)(_UseContextWithReducer.AppContext),
+      state = _useReducer.state,
+      dispatch = _useReducer.dispatch;
+
+  console.log(dispatch);
+
+  function handleLikeClick() {
+    console.log("clicked");
+    dispatch({
+      type: 'LIKES'
+    });
+  }
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "likes"
+  }, /*#__PURE__*/_react.default.createElement("span", null, totalLike, " \uD83D\uDC4D"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
+    onClick: handleLikeClick,
+    value: userId
+  }, "Like"));
+}
+
+var _default = LikeContent;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../components/UseContextWithReducer":"components/UseContextWithReducer.js"}],"pages/PostElement.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34115,19 +34219,26 @@ var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function LikeContent(_ref) {
-  var likeId = _ref.likeId,
-      userId = _ref.userId,
-      onClick = _ref.onClick;
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "likes"
-  }, /*#__PURE__*/_react.default.createElement("span", null, likeId, " \uD83D\uDC4D"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: onClick,
-    value: userId
-  }, "Like"));
+function PostElement(_ref) {
+  var photoProfil = _ref.photoProfil,
+      username = _ref.username,
+      converted = _ref.converted,
+      imagePost = _ref.imagePost,
+      postText = _ref.postText;
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "profile"
+  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
+    className: "photo-profile",
+    src: photoProfil,
+    alt: username
+  }), /*#__PURE__*/_react.default.createElement("p", null, username)), /*#__PURE__*/_react.default.createElement("p", null, converted)), /*#__PURE__*/_react.default.createElement("p", null, postText), /*#__PURE__*/_react.default.createElement("img", {
+    className: "post-img",
+    src: imagePost,
+    alt: username
+  }));
 }
 
-var _default = LikeContent;
+var _default = PostElement;
 exports.default = _default;
 },{"react":"node_modules/react/index.js"}],"components/displayPost.js":[function(require,module,exports) {
 "use strict";
@@ -34141,13 +34252,15 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Comments = _interopRequireDefault(require("../pages/Comments"));
 
-var _Comment = _interopRequireDefault(require("./Comment"));
+var _AddComment = _interopRequireDefault(require("./AddComment"));
 
 var _LikeContent = _interopRequireDefault(require("../pages/LikeContent"));
 
 var _PostTemplate = _interopRequireDefault(require("../pages/PostTemplate"));
 
 var _UseContextWithReducer = require("./UseContextWithReducer");
+
+var _PostElement = _interopRequireDefault(require("../pages/PostElement"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -34161,54 +34274,38 @@ function DisplayPost(_ref) {
   var children = _ref.children;
 
   var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
-      allPosts = _useContext.allPosts,
-      handleIncreament = _useContext.handleIncreament,
-      userNameData = _useContext.userNameData,
-      handleSubmit = _useContext.handleSubmit;
+      postData = _useContext.postData,
+      userData = _useContext.userData,
+      state = _useContext.state,
+      dispatch = _useContext.dispatch;
 
-  var findUser = userNameData.map(function (user) {
-    return user.userId;
-  });
-  var findPost = allPosts.map(function (post) {
-    if (Number(post.postId) === findUser.userId) {
-      console.log(post.postId);
-      console.log(findUser.userId);
-    }
-  });
-  console.log(findPost);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, allPosts.map(function (post) {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, state.postData.map(function (post) {
     var date = new Date(post.date);
-    var convertedDate = date.toLocaleString();
-    var likes = post.likes.map(function (like) {
+    var convertedDate = date.toLocaleDateString();
+    return /*#__PURE__*/_react.default.createElement(_PostTemplate.default, {
+      key: post.postId
+    }, /*#__PURE__*/_react.default.createElement(_PostElement.default, _extends({}, post, {
+      converted: convertedDate
+    })), post.likes.map(function (like) {
       return /*#__PURE__*/_react.default.createElement(_LikeContent.default, _extends({
-        key: like.likeId
+        key: like.userId
       }, like));
-    });
-    var comments = post.comments.map(function (comment) {
+    }), post.comments.map(function (comment) {
       var date = new Date(comment.date);
-      console.log(date);
-      var convertedDate = date.toLocaleString();
-      console.log(convertedDate);
+      var convertedDate = date.toLocaleDateString();
       return /*#__PURE__*/_react.default.createElement(_Comments.default, _extends({
+        photoProfil: post.photoProfil,
         key: comment.id
       }, comment, {
-        date: convertedDate,
-        photoProfil: post.photoProfil
+        date: convertedDate
       }));
-    });
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_PostTemplate.default, _extends({
-      key: post.postText
-    }, post, {
-      converted: convertedDate
-    })), likes, comments);
-  }), /*#__PURE__*/_react.default.createElement(_Comment.default, {
-    onClick: handleSubmit
+    }), /*#__PURE__*/_react.default.createElement(_AddComment.default, null));
   }));
 }
 
 var _default = DisplayPost;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../pages/Comments":"pages/Comments.js","./Comment":"components/Comment.js","../pages/LikeContent":"pages/LikeContent.js","../pages/PostTemplate":"pages/PostTemplate.js","./UseContextWithReducer":"components/UseContextWithReducer.js"}],"pages/PostTemplate.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../pages/Comments":"pages/Comments.js","./AddComment":"components/AddComment.js","../pages/LikeContent":"pages/LikeContent.js","../pages/PostTemplate":"pages/PostTemplate.js","./UseContextWithReducer":"components/UseContextWithReducer.js","../pages/PostElement":"pages/PostElement.js"}],"pages/PostTemplate.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34223,25 +34320,8 @@ var _displayPost = require("../components/displayPost");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function PostTemplate(_ref) {
-  var photoProfil = _ref.photoProfil,
-      postId = _ref.postId,
-      imagePost = _ref.imagePost,
-      username = _ref.username,
-      converted = _ref.converted,
-      postText = _ref.postText,
-      likes = _ref.likes,
-      onClick = _ref.onClick;
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "profile"
-  }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("img", {
-    className: "photo-profile",
-    src: photoProfil,
-    alt: username
-  }), /*#__PURE__*/_react.default.createElement("p", null, username)), /*#__PURE__*/_react.default.createElement("p", null, converted)), /*#__PURE__*/_react.default.createElement("p", null, postText), /*#__PURE__*/_react.default.createElement("img", {
-    className: "post-img",
-    src: imagePost,
-    alt: username
-  }));
+  var children = _ref.children;
+  return /*#__PURE__*/_react.default.createElement("div", null, children);
 }
 
 var _default = PostTemplate;
@@ -34258,13 +34338,15 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _Comments = _interopRequireDefault(require("../pages/Comments"));
 
-var _Comment = _interopRequireDefault(require("./Comment"));
+var _AddComment = _interopRequireDefault(require("./AddComment"));
 
 var _LikeContent = _interopRequireDefault(require("../pages/LikeContent"));
 
 var _PostTemplate = _interopRequireDefault(require("../pages/PostTemplate"));
 
 var _UseContextWithReducer = require("./UseContextWithReducer");
+
+var _PostElement = _interopRequireDefault(require("../pages/PostElement"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -34278,54 +34360,38 @@ function DisplayPost(_ref) {
   var children = _ref.children;
 
   var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
-      allPosts = _useContext.allPosts,
-      handleIncreament = _useContext.handleIncreament,
-      userNameData = _useContext.userNameData,
-      handleSubmit = _useContext.handleSubmit;
+      postData = _useContext.postData,
+      userData = _useContext.userData,
+      state = _useContext.state,
+      dispatch = _useContext.dispatch;
 
-  var findUser = userNameData.map(function (user) {
-    return user.userId;
-  });
-  var findPost = allPosts.map(function (post) {
-    if (Number(post.postId) === findUser.userId) {
-      console.log(post.postId);
-      console.log(findUser.userId);
-    }
-  });
-  console.log(findPost);
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, allPosts.map(function (post) {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, state.postData.map(function (post) {
     var date = new Date(post.date);
-    var convertedDate = date.toLocaleString();
-    var likes = post.likes.map(function (like) {
+    var convertedDate = date.toLocaleDateString();
+    return /*#__PURE__*/_react.default.createElement(_PostTemplate.default, {
+      key: post.postId
+    }, /*#__PURE__*/_react.default.createElement(_PostElement.default, _extends({}, post, {
+      converted: convertedDate
+    })), post.likes.map(function (like) {
       return /*#__PURE__*/_react.default.createElement(_LikeContent.default, _extends({
-        key: like.likeId
+        key: like.userId
       }, like));
-    });
-    var comments = post.comments.map(function (comment) {
+    }), post.comments.map(function (comment) {
       var date = new Date(comment.date);
-      console.log(date);
-      var convertedDate = date.toLocaleString();
-      console.log(convertedDate);
+      var convertedDate = date.toLocaleDateString();
       return /*#__PURE__*/_react.default.createElement(_Comments.default, _extends({
+        photoProfil: post.photoProfil,
         key: comment.id
       }, comment, {
-        date: convertedDate,
-        photoProfil: post.photoProfil
+        date: convertedDate
       }));
-    });
-    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_PostTemplate.default, _extends({
-      key: post.postText
-    }, post, {
-      converted: convertedDate
-    })), likes, comments);
-  }), /*#__PURE__*/_react.default.createElement(_Comment.default, {
-    onClick: handleSubmit
+    }), /*#__PURE__*/_react.default.createElement(_AddComment.default, null));
   }));
 }
 
 var _default = DisplayPost;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../pages/Comments":"pages/Comments.js","./Comment":"components/Comment.js","../pages/LikeContent":"pages/LikeContent.js","../pages/PostTemplate":"pages/PostTemplate.js","./UseContextWithReducer":"components/UseContextWithReducer.js"}],"components/Header.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../pages/Comments":"pages/Comments.js","./AddComment":"components/AddComment.js","../pages/LikeContent":"pages/LikeContent.js","../pages/PostTemplate":"pages/PostTemplate.js","./UseContextWithReducer":"components/UseContextWithReducer.js","../pages/PostElement":"pages/PostElement.js"}],"components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34337,8 +34403,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
-var _DisplayPost = require("./DisplayPost");
-
 var _UseContextWithReducer = require("./UseContextWithReducer");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -34349,11 +34413,11 @@ function Header(_ref) {
   var id = _ref.id;
 
   var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
-      allPosts = _useContext.allPosts,
-      actions = _useContext.actions,
-      userNameData = _useContext.userNameData;
+      userData = _useContext.userData,
+      state = _useContext.state,
+      dispatch = _useContext.dispatch;
 
-  var mappedUser = userNameData.map(function (user) {
+  var mappedUser = state.userData.map(function (user) {
     return /*#__PURE__*/_react.default.createElement("div", {
       className: "profile",
       key: user.userId
@@ -34376,7 +34440,7 @@ function Header(_ref) {
 
 var _default = Header;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./DisplayPost":"components/DisplayPost.js","./UseContextWithReducer":"components/UseContextWithReducer.js"}],"components/App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./UseContextWithReducer":"components/UseContextWithReducer.js"}],"components/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -34387,6 +34451,10 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
+
+var _AddPostElem = _interopRequireDefault(require("../pages/AddPostElem"));
+
+var _AddPost = _interopRequireDefault(require("./AddPost"));
 
 var _DisplayPost = _interopRequireDefault(require("./DisplayPost"));
 
@@ -34406,12 +34474,12 @@ function App() {
     path: "/"
   }, /*#__PURE__*/_react.default.createElement(_DisplayPost.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     path: "/addPost"
-  }, "Add a post"))));
+  }, /*#__PURE__*/_react.default.createElement(_AddPost.default, null, /*#__PURE__*/_react.default.createElement(_AddPostElem.default, null))))));
 }
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./DisplayPost":"components/DisplayPost.js","./Header":"components/Header.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../pages/AddPostElem":"pages/AddPostElem.js","./AddPost":"components/AddPost.js","./DisplayPost":"components/DisplayPost.js","./Header":"components/Header.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -34455,7 +34523,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61691" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50175" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

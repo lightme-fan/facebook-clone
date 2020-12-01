@@ -1,12 +1,11 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import {PostContext} from './DisplayPost'
 import { AppContext } from './UseContextWithReducer';
 
 function Header({id}) {
-    const { allPosts, actions, userNameData } = useContext(AppContext)
+    const { userData, state, dispatch } = useContext(AppContext)
     
-    const mappedUser = userNameData.map(user =>
+    const mappedUser = state.userData.map(user =>
         <div className='profile' key={user.userId}>
             <img className='photo-profile' src={user.photoProfil} alt='Username'/>
             <span className='profile--username'>{user.userName}</span>
