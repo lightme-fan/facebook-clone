@@ -1,0 +1,14 @@
+[
+    {
+        "userId": "1",
+        "userName": "Fanilo",
+        "profilePictureUrl": "https://bit.ly/340ocub",
+        "birthDate": "31/10/1996"
+    },
+    {
+        "userId": "2",
+        "userName": "Mems",
+        "profilePictureUrl": "https://picsum.photos/100",
+        "birthDate": "01/01/200"
+    }
+]

@@ -1,42 +1,35 @@
-import React, { useState, createContext, useContext } from 'react'
-import { Switch, Route } from 'react-router-dom'
-import AddPostElem from '../pages/AddPostElem'
-import PostElement from '../pages/PostElement'
-import UserPost from '../pages/UserPost'
-import AddPost from './AddPost'
-import DisplayPost from './DisplayPost'
-import Header from './Header'
-import CommentContent from '../pages/CommentContent'
-import AddComment from './AddComment'
-import ProfileOptions from './ProfileOption'
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import AddPost from './AddPost';
+import Feed from './Feed';
+import ProfileOptions from './ProfileOptions';
+import Menu from './Menu';
+import styled from 'styled-components';
 
-function App() {
-    
-    return (
-        <article>
-            <Header/>
-            <div className='container'>
-                <Switch>
-                    <Route exact path="/">
-                        <DisplayPost>
-                            <UserPost/>
-                            <PostElement/>
-                            <CommentContent/>
-                            <AddComment/>
-                        </DisplayPost>
-                    </Route>
-                    <Route path="/addPost">
-                        <AddPost>
-                            <AddPostElem/>
-                        </AddPost>
-                    </Route>
-                    <Route path="/user">
-                        <ProfileOptions/>
-                    </Route>
-                </Switch>
-            </div>   
-        </article>
-    )
+const ArticleStyle = styled.article`
+	max-width: 400px;
+	margin: auto;
+	padding: 1rem;
+	border: 1px solid;
+	border-radius: 8px;
+`; 
+
+export default function App() {
+	return (
+		<ArticleStyle>
+			<h1>Facebook Clone</h1>
+			<Menu />
+			<Switch>
+				<Route path="/" exact>
+					<Feed />
+				</Route>
+				<Route path="/add">
+					<AddPost />
+				</Route>
+				<Route path="/options">
+					<ProfileOptions />
+				</Route>
+			</Switch>
+		</ArticleStyle>
+	);
 }
-
-export default App

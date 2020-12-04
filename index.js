@@ -1,12 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './components/App'
-import {BrowserRouter as Router} from 'react-router-dom'
-import { UseContextWithReducer } from './components/UseContextWithReducer'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { GlobalContextProvider } from './components/Context';
 
 ReactDOM.render(
-    <UseContextWithReducer>
-        <Router><App/></Router>
-    </UseContextWithReducer>, 
-    document.getElementById('root')
-)
+	<GlobalContextProvider>
+		<Router>
+			<App />
+		</Router>
+	</GlobalContextProvider>,
+	document.getElementById('root')
+);

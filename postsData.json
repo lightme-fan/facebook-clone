@@ -1,0 +1,34 @@
+[
+    {
+        "postId": "1",
+        "date": 1606974838058,
+        "postTextContent": "Text about image, anything else... Just text... A beautiful image description. You can say whatever you want.",
+        "userId": "1",
+        "imgUrl": "https://seeklogo.com/images/C/chiken-strong-logo-0CD23797DA-seeklogo.com.png",
+        "likes": [
+            {
+                "likeId": "1",
+                "userId": "1"
+            },
+            {
+                "likeId": "2",
+                "userId": "2"
+            }
+        ],
+        "comments": [
+            {
+                "commentId": "1",
+                "userId": "1",
+                "date": 1606974934358,
+                "commentTextContent": "Hey! This is so nice."
+            },
+            {
+                "commentId": "2",
+                "userId": "2",
+                "date": 1606974934999,
+                "commentTextContent": "Fantastic!"
+            }
+        ]
+
+    }
+]

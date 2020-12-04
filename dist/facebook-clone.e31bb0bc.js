@@ -29785,7 +29785,7 @@ function _inheritsLoose(subClass, superClass) {
   subClass.prototype.constructor = subClass;
   subClass.__proto__ = superClass;
 }
-},{}],"node_modules/react-is/cjs/react-is.development.js":[function(require,module,exports) {
+},{}],"node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js":[function(require,module,exports) {
 /** @license React v16.13.1
  * react-is.development.js
  *
@@ -29975,7 +29975,7 @@ if ("development" !== "production") {
     exports.typeOf = typeOf;
   })();
 }
-},{}],"node_modules/react-is/index.js":[function(require,module,exports) {
+},{}],"node_modules/prop-types/node_modules/react-is/index.js":[function(require,module,exports) {
 'use strict';
 
 if ("development" === 'production') {
@@ -29983,7 +29983,7 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-is.development.js');
 }
-},{"./cjs/react-is.development.js":"node_modules/react-is/cjs/react-is.development.js"}],"node_modules/prop-types/lib/ReactPropTypesSecret.js":[function(require,module,exports) {
+},{"./cjs/react-is.development.js":"node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js"}],"node_modules/prop-types/lib/ReactPropTypesSecret.js":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -30737,7 +30737,7 @@ module.exports = function (isValidElement, throwOnDirectAccess) {
   ReactPropTypes.PropTypes = ReactPropTypes;
   return ReactPropTypes;
 };
-},{"react-is":"node_modules/react-is/index.js","object-assign":"node_modules/object-assign/index.js","./lib/ReactPropTypesSecret":"node_modules/prop-types/lib/ReactPropTypesSecret.js","./checkPropTypes":"node_modules/prop-types/checkPropTypes.js"}],"node_modules/prop-types/index.js":[function(require,module,exports) {
+},{"react-is":"node_modules/prop-types/node_modules/react-is/index.js","object-assign":"node_modules/object-assign/index.js","./lib/ReactPropTypesSecret":"node_modules/prop-types/lib/ReactPropTypesSecret.js","./checkPropTypes":"node_modules/prop-types/checkPropTypes.js"}],"node_modules/prop-types/index.js":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -30756,7 +30756,7 @@ if ("development" !== 'production') {
   // http://fb.me/prop-types-in-prod
   module.exports = require('./factoryWithThrowingShims')();
 }
-},{"react-is":"node_modules/react-is/index.js","./factoryWithTypeCheckers":"node_modules/prop-types/factoryWithTypeCheckers.js"}],"node_modules/@babel/runtime/helpers/esm/extends.js":[function(require,module,exports) {
+},{"react-is":"node_modules/prop-types/node_modules/react-is/index.js","./factoryWithTypeCheckers":"node_modules/prop-types/factoryWithTypeCheckers.js"}],"node_modules/@babel/runtime/helpers/esm/extends.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32519,7 +32519,205 @@ function pathToRegexp (path, keys, options) {
   return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
 }
 
-},{"isarray":"node_modules/isarray/index.js"}],"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js":[function(require,module,exports) {
+},{"isarray":"node_modules/isarray/index.js"}],"node_modules/react-router/node_modules/react-is/cjs/react-is.development.js":[function(require,module,exports) {
+/** @license React v16.13.1
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+'use strict';
+
+if ("development" !== "production") {
+  (function () {
+    'use strict'; // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+    // nor polyfill, then a plain number is used for performance.
+
+    var hasSymbol = typeof Symbol === 'function' && Symbol.for;
+    var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+    var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+    var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+    var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+    var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+    var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+    var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+    // (unstable) APIs that have been removed. Can we remove the symbols?
+
+    var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
+    var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+    var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+    var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+    var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+    var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+    var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+    var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+    var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+    var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+    var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+
+    function isValidElementType(type) {
+      return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+      type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+    }
+
+    function typeOf(object) {
+      if (typeof object === 'object' && object !== null) {
+        var $$typeof = object.$$typeof;
+
+        switch ($$typeof) {
+          case REACT_ELEMENT_TYPE:
+            var type = object.type;
+
+            switch (type) {
+              case REACT_ASYNC_MODE_TYPE:
+              case REACT_CONCURRENT_MODE_TYPE:
+              case REACT_FRAGMENT_TYPE:
+              case REACT_PROFILER_TYPE:
+              case REACT_STRICT_MODE_TYPE:
+              case REACT_SUSPENSE_TYPE:
+                return type;
+
+              default:
+                var $$typeofType = type && type.$$typeof;
+
+                switch ($$typeofType) {
+                  case REACT_CONTEXT_TYPE:
+                  case REACT_FORWARD_REF_TYPE:
+                  case REACT_LAZY_TYPE:
+                  case REACT_MEMO_TYPE:
+                  case REACT_PROVIDER_TYPE:
+                    return $$typeofType;
+
+                  default:
+                    return $$typeof;
+                }
+
+            }
+
+          case REACT_PORTAL_TYPE:
+            return $$typeof;
+        }
+      }
+
+      return undefined;
+    } // AsyncMode is deprecated along with isAsyncMode
+
+
+    var AsyncMode = REACT_ASYNC_MODE_TYPE;
+    var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+    var ContextConsumer = REACT_CONTEXT_TYPE;
+    var ContextProvider = REACT_PROVIDER_TYPE;
+    var Element = REACT_ELEMENT_TYPE;
+    var ForwardRef = REACT_FORWARD_REF_TYPE;
+    var Fragment = REACT_FRAGMENT_TYPE;
+    var Lazy = REACT_LAZY_TYPE;
+    var Memo = REACT_MEMO_TYPE;
+    var Portal = REACT_PORTAL_TYPE;
+    var Profiler = REACT_PROFILER_TYPE;
+    var StrictMode = REACT_STRICT_MODE_TYPE;
+    var Suspense = REACT_SUSPENSE_TYPE;
+    var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+
+    function isAsyncMode(object) {
+      {
+        if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+          hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+
+          console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+        }
+      }
+      return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+    }
+
+    function isConcurrentMode(object) {
+      return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+    }
+
+    function isContextConsumer(object) {
+      return typeOf(object) === REACT_CONTEXT_TYPE;
+    }
+
+    function isContextProvider(object) {
+      return typeOf(object) === REACT_PROVIDER_TYPE;
+    }
+
+    function isElement(object) {
+      return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+    }
+
+    function isForwardRef(object) {
+      return typeOf(object) === REACT_FORWARD_REF_TYPE;
+    }
+
+    function isFragment(object) {
+      return typeOf(object) === REACT_FRAGMENT_TYPE;
+    }
+
+    function isLazy(object) {
+      return typeOf(object) === REACT_LAZY_TYPE;
+    }
+
+    function isMemo(object) {
+      return typeOf(object) === REACT_MEMO_TYPE;
+    }
+
+    function isPortal(object) {
+      return typeOf(object) === REACT_PORTAL_TYPE;
+    }
+
+    function isProfiler(object) {
+      return typeOf(object) === REACT_PROFILER_TYPE;
+    }
+
+    function isStrictMode(object) {
+      return typeOf(object) === REACT_STRICT_MODE_TYPE;
+    }
+
+    function isSuspense(object) {
+      return typeOf(object) === REACT_SUSPENSE_TYPE;
+    }
+
+    exports.AsyncMode = AsyncMode;
+    exports.ConcurrentMode = ConcurrentMode;
+    exports.ContextConsumer = ContextConsumer;
+    exports.ContextProvider = ContextProvider;
+    exports.Element = Element;
+    exports.ForwardRef = ForwardRef;
+    exports.Fragment = Fragment;
+    exports.Lazy = Lazy;
+    exports.Memo = Memo;
+    exports.Portal = Portal;
+    exports.Profiler = Profiler;
+    exports.StrictMode = StrictMode;
+    exports.Suspense = Suspense;
+    exports.isAsyncMode = isAsyncMode;
+    exports.isConcurrentMode = isConcurrentMode;
+    exports.isContextConsumer = isContextConsumer;
+    exports.isContextProvider = isContextProvider;
+    exports.isElement = isElement;
+    exports.isForwardRef = isForwardRef;
+    exports.isFragment = isFragment;
+    exports.isLazy = isLazy;
+    exports.isMemo = isMemo;
+    exports.isPortal = isPortal;
+    exports.isProfiler = isProfiler;
+    exports.isStrictMode = isStrictMode;
+    exports.isSuspense = isSuspense;
+    exports.isValidElementType = isValidElementType;
+    exports.typeOf = typeOf;
+  })();
+}
+},{}],"node_modules/react-router/node_modules/react-is/index.js":[function(require,module,exports) {
+'use strict';
+
+if ("development" === 'production') {
+  module.exports = require('./cjs/react-is.production.min.js');
+} else {
+  module.exports = require('./cjs/react-is.development.js');
+}
+},{"./cjs/react-is.development.js":"node_modules/react-router/node_modules/react-is/cjs/react-is.development.js"}],"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32541,7 +32739,205 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
   return target;
 }
-},{}],"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js":[function(require,module,exports) {
+},{}],"node_modules/hoist-non-react-statics/node_modules/react-is/cjs/react-is.development.js":[function(require,module,exports) {
+/** @license React v16.13.1
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+'use strict';
+
+if ("development" !== "production") {
+  (function () {
+    'use strict'; // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+    // nor polyfill, then a plain number is used for performance.
+
+    var hasSymbol = typeof Symbol === 'function' && Symbol.for;
+    var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+    var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+    var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+    var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+    var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+    var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+    var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+    // (unstable) APIs that have been removed. Can we remove the symbols?
+
+    var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
+    var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+    var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+    var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+    var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+    var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+    var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+    var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
+    var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+    var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+    var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+
+    function isValidElementType(type) {
+      return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+      type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+    }
+
+    function typeOf(object) {
+      if (typeof object === 'object' && object !== null) {
+        var $$typeof = object.$$typeof;
+
+        switch ($$typeof) {
+          case REACT_ELEMENT_TYPE:
+            var type = object.type;
+
+            switch (type) {
+              case REACT_ASYNC_MODE_TYPE:
+              case REACT_CONCURRENT_MODE_TYPE:
+              case REACT_FRAGMENT_TYPE:
+              case REACT_PROFILER_TYPE:
+              case REACT_STRICT_MODE_TYPE:
+              case REACT_SUSPENSE_TYPE:
+                return type;
+
+              default:
+                var $$typeofType = type && type.$$typeof;
+
+                switch ($$typeofType) {
+                  case REACT_CONTEXT_TYPE:
+                  case REACT_FORWARD_REF_TYPE:
+                  case REACT_LAZY_TYPE:
+                  case REACT_MEMO_TYPE:
+                  case REACT_PROVIDER_TYPE:
+                    return $$typeofType;
+
+                  default:
+                    return $$typeof;
+                }
+
+            }
+
+          case REACT_PORTAL_TYPE:
+            return $$typeof;
+        }
+      }
+
+      return undefined;
+    } // AsyncMode is deprecated along with isAsyncMode
+
+
+    var AsyncMode = REACT_ASYNC_MODE_TYPE;
+    var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+    var ContextConsumer = REACT_CONTEXT_TYPE;
+    var ContextProvider = REACT_PROVIDER_TYPE;
+    var Element = REACT_ELEMENT_TYPE;
+    var ForwardRef = REACT_FORWARD_REF_TYPE;
+    var Fragment = REACT_FRAGMENT_TYPE;
+    var Lazy = REACT_LAZY_TYPE;
+    var Memo = REACT_MEMO_TYPE;
+    var Portal = REACT_PORTAL_TYPE;
+    var Profiler = REACT_PROFILER_TYPE;
+    var StrictMode = REACT_STRICT_MODE_TYPE;
+    var Suspense = REACT_SUSPENSE_TYPE;
+    var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+
+    function isAsyncMode(object) {
+      {
+        if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+          hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+
+          console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+        }
+      }
+      return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+    }
+
+    function isConcurrentMode(object) {
+      return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+    }
+
+    function isContextConsumer(object) {
+      return typeOf(object) === REACT_CONTEXT_TYPE;
+    }
+
+    function isContextProvider(object) {
+      return typeOf(object) === REACT_PROVIDER_TYPE;
+    }
+
+    function isElement(object) {
+      return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+    }
+
+    function isForwardRef(object) {
+      return typeOf(object) === REACT_FORWARD_REF_TYPE;
+    }
+
+    function isFragment(object) {
+      return typeOf(object) === REACT_FRAGMENT_TYPE;
+    }
+
+    function isLazy(object) {
+      return typeOf(object) === REACT_LAZY_TYPE;
+    }
+
+    function isMemo(object) {
+      return typeOf(object) === REACT_MEMO_TYPE;
+    }
+
+    function isPortal(object) {
+      return typeOf(object) === REACT_PORTAL_TYPE;
+    }
+
+    function isProfiler(object) {
+      return typeOf(object) === REACT_PROFILER_TYPE;
+    }
+
+    function isStrictMode(object) {
+      return typeOf(object) === REACT_STRICT_MODE_TYPE;
+    }
+
+    function isSuspense(object) {
+      return typeOf(object) === REACT_SUSPENSE_TYPE;
+    }
+
+    exports.AsyncMode = AsyncMode;
+    exports.ConcurrentMode = ConcurrentMode;
+    exports.ContextConsumer = ContextConsumer;
+    exports.ContextProvider = ContextProvider;
+    exports.Element = Element;
+    exports.ForwardRef = ForwardRef;
+    exports.Fragment = Fragment;
+    exports.Lazy = Lazy;
+    exports.Memo = Memo;
+    exports.Portal = Portal;
+    exports.Profiler = Profiler;
+    exports.StrictMode = StrictMode;
+    exports.Suspense = Suspense;
+    exports.isAsyncMode = isAsyncMode;
+    exports.isConcurrentMode = isConcurrentMode;
+    exports.isContextConsumer = isContextConsumer;
+    exports.isContextProvider = isContextProvider;
+    exports.isElement = isElement;
+    exports.isForwardRef = isForwardRef;
+    exports.isFragment = isFragment;
+    exports.isLazy = isLazy;
+    exports.isMemo = isMemo;
+    exports.isPortal = isPortal;
+    exports.isProfiler = isProfiler;
+    exports.isStrictMode = isStrictMode;
+    exports.isSuspense = isSuspense;
+    exports.isValidElementType = isValidElementType;
+    exports.typeOf = typeOf;
+  })();
+}
+},{}],"node_modules/hoist-non-react-statics/node_modules/react-is/index.js":[function(require,module,exports) {
+'use strict';
+
+if ("development" === 'production') {
+  module.exports = require('./cjs/react-is.production.min.js');
+} else {
+  module.exports = require('./cjs/react-is.development.js');
+}
+},{"./cjs/react-is.development.js":"node_modules/hoist-non-react-statics/node_modules/react-is/cjs/react-is.development.js"}],"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js":[function(require,module,exports) {
 'use strict';
 
 var reactIs = require('react-is');
@@ -32646,7 +33042,7 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 
 module.exports = hoistNonReactStatics;
 
-},{"react-is":"node_modules/react-is/index.js"}],"node_modules/react-router/esm/react-router.js":[function(require,module,exports) {
+},{"react-is":"node_modules/hoist-non-react-statics/node_modules/react-is/index.js"}],"node_modules/react-router/esm/react-router.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -33441,7 +33837,7 @@ if ("development" !== "production") {
     global[key] = "esm";
   }
 }
-},{"@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","prop-types":"node_modules/prop-types/index.js","history":"node_modules/history/esm/history.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","mini-create-react-context":"node_modules/mini-create-react-context/dist/esm/index.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","path-to-regexp":"node_modules/path-to-regexp/index.js","react-is":"node_modules/react-is/index.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js"}],"node_modules/react-router-dom/esm/react-router-dom.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","prop-types":"node_modules/prop-types/index.js","history":"node_modules/history/esm/history.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","mini-create-react-context":"node_modules/mini-create-react-context/dist/esm/index.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","path-to-regexp":"node_modules/path-to-regexp/index.js","react-is":"node_modules/react-router/node_modules/react-is/index.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js"}],"node_modules/react-router-dom/esm/react-router-dom.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -33853,51 +34249,58 @@ if ("development" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"posts.json":[function(require,module,exports) {
+},{"react-router":"node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"node_modules/react/index.js","history":"node_modules/history/esm/history.js","prop-types":"node_modules/prop-types/index.js","tiny-warning":"node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"postsData.json":[function(require,module,exports) {
 module.exports = [{
-  "username": "Fanilo",
-  "userId": "1",
-  "photoProfil": "https://bit.ly/3lsTtMc",
-  "imagePost": "https://seeklogo.com/images/C/chiken-strong-logo-0CD23797DA-seeklogo.com.png",
-  "postText": "Text about image, anything else... Just text... A beautiful image description. You can say whatever you want.",
-  "date": 1606725399303,
   "postId": "1",
+  "date": 1606974838058,
+  "postTextContent": "Text about image, anything else... Just text... A beautiful image description. You can say whatever you want.",
+  "userId": "1",
+  "imgUrl": "https://seeklogo.com/images/C/chiken-strong-logo-0CD23797DA-seeklogo.com.png",
   "likes": [{
-    "totalLike": 1,
-    "likeId": "1606725399303",
-    "userId": "1283782987"
+    "likeId": "1",
+    "userId": "1"
+  }, {
+    "likeId": "2",
+    "userId": "2"
   }],
   "comments": [{
-    "textComment": "Fantastic!",
     "commentId": "1",
-    "date": 1606779068327
+    "userId": "1",
+    "date": 1606974934358,
+    "commentTextContent": "Hey! This is so nice."
   }, {
-    "textComment": "Thanks sis!",
-    "date": 1606779068327,
-    "commentId": "2"
+    "commentId": "2",
+    "userId": "2",
+    "date": 1606974934999,
+    "commentTextContent": "Fantastic!"
   }]
 }];
-},{}],"username.json":[function(require,module,exports) {
+},{}],"usersData.json":[function(require,module,exports) {
 module.exports = [{
   "userId": "1",
   "userName": "Fanilo",
-  "photoProfil": "https://picsum.photos/100",
-  "birthDate": "13/09/1991"
+  "profilePictureUrl": "https://bit.ly/340ocub",
+  "birthDate": "31/10/1996"
+}, {
+  "userId": "2",
+  "userName": "Mems",
+  "profilePictureUrl": "https://picsum.photos/100",
+  "birthDate": "01/01/200"
 }];
-},{}],"components/UseContextWithReducer.js":[function(require,module,exports) {
+},{}],"components/Context.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UseContextWithReducer = UseContextWithReducer;
-exports.AppContext = void 0;
+exports.GlobalContextProvider = GlobalContextProvider;
+exports.GlobalContext = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _posts = _interopRequireDefault(require("../posts.json"));
+var _postsData = _interopRequireDefault(require("../postsData.json"));
 
-var _username = _interopRequireDefault(require("../username.json"));
+var _usersData = _interopRequireDefault(require("../usersData.json"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33905,13 +34308,13 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
 
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -33919,114 +34322,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-var AppContext = (0, _react.createContext)();
-exports.AppContext = AppContext;
-var initialValue = {
-  postData: _toConsumableArray(_posts.default),
-  userData: _toConsumableArray(_username.default),
-  currentUser: '1'
-};
-
-var appReducer = function appReducer(state, action) {
-  var postData = state.postData,
-      userData = state.userData,
-      currentUser = state.currentUser;
-
-  switch (action.type) {
-    case "ADD_NEW_POST":
-      {
-        return _objectSpread(_objectSpread({}, state), {}, {
-          postData: [].concat(_toConsumableArray(postData), [action.newPost])
-        });
-      }
-
-    case "ADD_COMMENT":
-      {
-        var newPosts = postData.map(function (post) {
-          if (post.postId !== action.postId) {
-            console.log(post.comments);
-            return _objectSpread(_objectSpread({}, post), {}, {
-              comments: [].concat(_toConsumableArray(post.comments), [action.newComments])
-            });
-          }
-
-          return post;
-        });
-        return _objectSpread(_objectSpread({}, state), {}, {
-          postData: newPosts
-        });
-      }
-
-    case "LIKES":
-      {
-        var _newPosts = postData.map(function (post) {
-          console.log(action.likeId);
-          return _objectSpread(_objectSpread({}, post), {}, {
-            likes: post.likes.map(function (like) {
-              return like.totalLike++;
-            })
-          });
-        });
-
-        return _objectSpread(_objectSpread({}, state), {}, {
-          postData: _newPosts
-        });
-      }
-
-    default:
-      {
-        return state;
-      }
-  }
-};
-
-function UseContextWithReducer(_ref) {
-  var children = _ref.children;
-
-  var _useReducer = (0, _react.useReducer)(appReducer, initialValue),
-      _useReducer2 = _slicedToArray(_useReducer, 2),
-      state = _useReducer2[0],
-      dispatch = _useReducer2[1];
-
-  var postData = state.postData,
-      userData = state.userData;
-  return /*#__PURE__*/_react.default.createElement(AppContext.Provider, {
-    value: {
-      postData: postData,
-      userData: userData,
-      state: state,
-      dispatch: dispatch
-    }
-  }, children);
-}
-},{"react":"node_modules/react/index.js","../posts.json":"posts.json","../username.json":"username.json"}],"pages/AddPostElem.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _UseContextWithReducer = require("../components/UseContextWithReducer");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -34039,99 +34334,377 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function AddPostElem() {
-  var _useState = (0, _react.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      postContent = _useState2[0],
-      setPostContent = _useState2[1];
+var GlobalContext = (0, _react.createContext)();
+exports.GlobalContext = GlobalContext;
 
-  var _useState3 = (0, _react.useState)('http://picsum.photos/100'),
-      _useState4 = _slicedToArray(_useState3, 2),
-      postImage = _useState4[0],
-      setPostImage = _useState4[1];
+function GlobalContextProvider(_ref) {
+  var children = _ref.children;
 
-  var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
-      state = _useContext.state,
-      dispatch = _useContext.dispatch;
+  var _useReducer = (0, _react.useReducer)(function (state, action) {
+    switch (action.type) {
+      case 'LOAD_JSON_DATA':
+        {
+          return _objectSpread(_objectSpread({}, state), {}, {
+            loading: false,
+            posts: _postsData.default,
+            users: _usersData.default
+          });
+        }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    var form = e.target;
-    var newPost = {
-      imagePost: postImage,
-      postText: postContent,
-      date: new Date(),
-      userId: state.currentUser,
-      postId: Date.now(),
-      likes: [],
-      comments: []
-    };
-    console.log(newPost);
-    dispatch({
-      type: 'ADD_NEW_POST',
-      newPost: newPost
-    });
-  }
+      case 'ADD_NEW_POST':
+        {
+          return _objectSpread(_objectSpread({}, state), {}, {
+            posts: [].concat(_toConsumableArray(state.posts), [action.newPost])
+          });
+        }
 
-  console.log(state.postData); // https://bit.ly/3qmKNub
+      case 'UPDATE_CURRENT_USER':
+        {
+          var newUsersArray = state.users.map(function (user) {
+            if (user.userId === state.currentUser) {
+              return _objectSpread(_objectSpread({}, user), {}, {
+                userName: action.userName,
+                profilePictureUrl: action.profilePictureUrl
+              });
+            }
 
-  return /*#__PURE__*/_react.default.createElement("form", {
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/_react.default.createElement("label", null, "Write a Post ", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("textarea", {
-    name: "post",
-    id: "postText",
-    rows: "5",
-    value: postContent,
-    onChange: function onChange(e) {
-      return setPostContent(e.target.value);
+            return user;
+          });
+          return _objectSpread(_objectSpread({}, state), {}, {
+            users: newUsersArray
+          });
+        }
+
+      case 'LIKE_POST':
+        {
+          var newPosts = state.posts.map(function (post) {
+            if (post.postId === action.postId) {
+              return _objectSpread(_objectSpread({}, post), {}, {
+                likes: [].concat(_toConsumableArray(post.likes), [action.newLike])
+              });
+            }
+
+            return post;
+          });
+          return _objectSpread(_objectSpread({}, state), {}, {
+            posts: newPosts
+          });
+        }
+
+      case 'UNLIKE_POST':
+        {
+          var _newPosts = state.posts.map(function (post) {
+            if (post.postId === action.postId) {
+              return _objectSpread(_objectSpread({}, post), {}, {
+                likes: post.likes.filter(function (like) {
+                  return like.userId !== state.currentUser;
+                })
+              });
+            }
+
+            return post;
+          });
+
+          return _objectSpread(_objectSpread({}, state), {}, {
+            posts: _newPosts
+          });
+        }
+
+      case 'ADD_COMMENT_TO_POST':
+        {
+          var _newPosts2 = state.posts.map(function (post) {
+            if (post.postId === action.postId) {
+              return _objectSpread(_objectSpread({}, post), {}, {
+                comments: [].concat(_toConsumableArray(post.comments), [action.newComment])
+              });
+            }
+
+            return post;
+          });
+
+          return _objectSpread(_objectSpread({}, state), {}, {
+            posts: _newPosts2
+          });
+        }
+
+      default:
+        {
+          console.error('No actions defined for', action.type);
+          break;
+        }
     }
-  })), /*#__PURE__*/_react.default.createElement("label", null, "Add pictures ", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("input", {
-    type: "url",
-    name: "image",
-    value: postImage,
-    onChange: function onChange(e) {
-      return setPostImage(e.target.value);
+
+    return state;
+  }, {
+    loading: true,
+    posts: [],
+    users: [],
+    currentUser: '1'
+  }),
+      _useReducer2 = _slicedToArray(_useReducer, 2),
+      state = _useReducer2[0],
+      dispatch = _useReducer2[1];
+
+  (0, _react.useEffect)(function () {
+    setTimeout(function () {
+      '';
+
+      dispatch({
+        type: 'LOAD_JSON_DATA'
+      });
+    }, 1000);
+  }, []);
+  return /*#__PURE__*/_react.default.createElement(GlobalContext.Provider, {
+    value: {
+      state: state,
+      dispatch: dispatch
     }
-  })), " ", /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("hr", null), /*#__PURE__*/_react.default.createElement("button", null, "Post"));
+  }, children);
 }
+},{"react":"node_modules/react/index.js","../postsData.json":"postsData.json","../usersData.json":"usersData.json"}],"node_modules/react-is/cjs/react-is.development.js":[function(require,module,exports) {
+/** @license React v17.0.1
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+'use strict';
 
-var _default = AddPostElem;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../components/UseContextWithReducer":"components/UseContextWithReducer.js"}],"pages/PostElement.js":[function(require,module,exports) {
-"use strict";
+if ("development" !== "production") {
+  (function () {
+    'use strict'; // ATTENTION
+    // When adding new symbols to this file,
+    // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
+    // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+    // nor polyfill, then a plain number is used for performance.
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
+    var REACT_ELEMENT_TYPE = 0xeac7;
+    var REACT_PORTAL_TYPE = 0xeaca;
+    var REACT_FRAGMENT_TYPE = 0xeacb;
+    var REACT_STRICT_MODE_TYPE = 0xeacc;
+    var REACT_PROFILER_TYPE = 0xead2;
+    var REACT_PROVIDER_TYPE = 0xeacd;
+    var REACT_CONTEXT_TYPE = 0xeace;
+    var REACT_FORWARD_REF_TYPE = 0xead0;
+    var REACT_SUSPENSE_TYPE = 0xead1;
+    var REACT_SUSPENSE_LIST_TYPE = 0xead8;
+    var REACT_MEMO_TYPE = 0xead3;
+    var REACT_LAZY_TYPE = 0xead4;
+    var REACT_BLOCK_TYPE = 0xead9;
+    var REACT_SERVER_BLOCK_TYPE = 0xeada;
+    var REACT_FUNDAMENTAL_TYPE = 0xead5;
+    var REACT_SCOPE_TYPE = 0xead7;
+    var REACT_OPAQUE_ID_TYPE = 0xeae0;
+    var REACT_DEBUG_TRACING_MODE_TYPE = 0xeae1;
+    var REACT_OFFSCREEN_TYPE = 0xeae2;
+    var REACT_LEGACY_HIDDEN_TYPE = 0xeae3;
 
-var _react = _interopRequireWildcard(require("react"));
+    if (typeof Symbol === 'function' && Symbol.for) {
+      var symbolFor = Symbol.for;
+      REACT_ELEMENT_TYPE = symbolFor('react.element');
+      REACT_PORTAL_TYPE = symbolFor('react.portal');
+      REACT_FRAGMENT_TYPE = symbolFor('react.fragment');
+      REACT_STRICT_MODE_TYPE = symbolFor('react.strict_mode');
+      REACT_PROFILER_TYPE = symbolFor('react.profiler');
+      REACT_PROVIDER_TYPE = symbolFor('react.provider');
+      REACT_CONTEXT_TYPE = symbolFor('react.context');
+      REACT_FORWARD_REF_TYPE = symbolFor('react.forward_ref');
+      REACT_SUSPENSE_TYPE = symbolFor('react.suspense');
+      REACT_SUSPENSE_LIST_TYPE = symbolFor('react.suspense_list');
+      REACT_MEMO_TYPE = symbolFor('react.memo');
+      REACT_LAZY_TYPE = symbolFor('react.lazy');
+      REACT_BLOCK_TYPE = symbolFor('react.block');
+      REACT_SERVER_BLOCK_TYPE = symbolFor('react.server.block');
+      REACT_FUNDAMENTAL_TYPE = symbolFor('react.fundamental');
+      REACT_SCOPE_TYPE = symbolFor('react.scope');
+      REACT_OPAQUE_ID_TYPE = symbolFor('react.opaque.id');
+      REACT_DEBUG_TRACING_MODE_TYPE = symbolFor('react.debug_trace_mode');
+      REACT_OFFSCREEN_TYPE = symbolFor('react.offscreen');
+      REACT_LEGACY_HIDDEN_TYPE = symbolFor('react.legacy_hidden');
+    } // Filter certain DOM attributes (e.g. src, href) if their values are empty strings.
 
-var _UseContextWithReducer = require("../components/UseContextWithReducer");
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+    var enableScopeAPI = false; // Experimental Create Event Handle API.
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+    function isValidElementType(type) {
+      if (typeof type === 'string' || typeof type === 'function') {
+        return true;
+      } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
 
-function PostElement() {
-  var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
-      state = _useContext.state,
-      dispatch = _useContext.dispatch;
 
-  return /*#__PURE__*/_react.default.createElement("div", null, state.postData.map(function (post) {
-    return /*#__PURE__*/_react.default.createElement("div", {
-      key: post.postId
-    }, /*#__PURE__*/_react.default.createElement("p", null, post.convertedDate), /*#__PURE__*/_react.default.createElement("p", null, post.postText), /*#__PURE__*/_react.default.createElement("img", {
-      className: "post-img",
-      src: post.imagePost,
-      alt: post.username
-    }));
-  }));
+      if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || type === REACT_DEBUG_TRACING_MODE_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_LEGACY_HIDDEN_TYPE || enableScopeAPI) {
+        return true;
+      }
+
+      if (typeof type === 'object' && type !== null) {
+        if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    function typeOf(object) {
+      if (typeof object === 'object' && object !== null) {
+        var $$typeof = object.$$typeof;
+
+        switch ($$typeof) {
+          case REACT_ELEMENT_TYPE:
+            var type = object.type;
+
+            switch (type) {
+              case REACT_FRAGMENT_TYPE:
+              case REACT_PROFILER_TYPE:
+              case REACT_STRICT_MODE_TYPE:
+              case REACT_SUSPENSE_TYPE:
+              case REACT_SUSPENSE_LIST_TYPE:
+                return type;
+
+              default:
+                var $$typeofType = type && type.$$typeof;
+
+                switch ($$typeofType) {
+                  case REACT_CONTEXT_TYPE:
+                  case REACT_FORWARD_REF_TYPE:
+                  case REACT_LAZY_TYPE:
+                  case REACT_MEMO_TYPE:
+                  case REACT_PROVIDER_TYPE:
+                    return $$typeofType;
+
+                  default:
+                    return $$typeof;
+                }
+
+            }
+
+          case REACT_PORTAL_TYPE:
+            return $$typeof;
+        }
+      }
+
+      return undefined;
+    }
+
+    var ContextConsumer = REACT_CONTEXT_TYPE;
+    var ContextProvider = REACT_PROVIDER_TYPE;
+    var Element = REACT_ELEMENT_TYPE;
+    var ForwardRef = REACT_FORWARD_REF_TYPE;
+    var Fragment = REACT_FRAGMENT_TYPE;
+    var Lazy = REACT_LAZY_TYPE;
+    var Memo = REACT_MEMO_TYPE;
+    var Portal = REACT_PORTAL_TYPE;
+    var Profiler = REACT_PROFILER_TYPE;
+    var StrictMode = REACT_STRICT_MODE_TYPE;
+    var Suspense = REACT_SUSPENSE_TYPE;
+    var hasWarnedAboutDeprecatedIsAsyncMode = false;
+    var hasWarnedAboutDeprecatedIsConcurrentMode = false; // AsyncMode should be deprecated
+
+    function isAsyncMode(object) {
+      {
+        if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+          hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+
+          console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 18+.');
+        }
+      }
+      return false;
+    }
+
+    function isConcurrentMode(object) {
+      {
+        if (!hasWarnedAboutDeprecatedIsConcurrentMode) {
+          hasWarnedAboutDeprecatedIsConcurrentMode = true; // Using console['warn'] to evade Babel and ESLint
+
+          console['warn']('The ReactIs.isConcurrentMode() alias has been deprecated, ' + 'and will be removed in React 18+.');
+        }
+      }
+      return false;
+    }
+
+    function isContextConsumer(object) {
+      return typeOf(object) === REACT_CONTEXT_TYPE;
+    }
+
+    function isContextProvider(object) {
+      return typeOf(object) === REACT_PROVIDER_TYPE;
+    }
+
+    function isElement(object) {
+      return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+    }
+
+    function isForwardRef(object) {
+      return typeOf(object) === REACT_FORWARD_REF_TYPE;
+    }
+
+    function isFragment(object) {
+      return typeOf(object) === REACT_FRAGMENT_TYPE;
+    }
+
+    function isLazy(object) {
+      return typeOf(object) === REACT_LAZY_TYPE;
+    }
+
+    function isMemo(object) {
+      return typeOf(object) === REACT_MEMO_TYPE;
+    }
+
+    function isPortal(object) {
+      return typeOf(object) === REACT_PORTAL_TYPE;
+    }
+
+    function isProfiler(object) {
+      return typeOf(object) === REACT_PROFILER_TYPE;
+    }
+
+    function isStrictMode(object) {
+      return typeOf(object) === REACT_STRICT_MODE_TYPE;
+    }
+
+    function isSuspense(object) {
+      return typeOf(object) === REACT_SUSPENSE_TYPE;
+    }
+
+    exports.ContextConsumer = ContextConsumer;
+    exports.ContextProvider = ContextProvider;
+    exports.Element = Element;
+    exports.ForwardRef = ForwardRef;
+    exports.Fragment = Fragment;
+    exports.Lazy = Lazy;
+    exports.Memo = Memo;
+    exports.Portal = Portal;
+    exports.Profiler = Profiler;
+    exports.StrictMode = StrictMode;
+    exports.Suspense = Suspense;
+    exports.isAsyncMode = isAsyncMode;
+    exports.isConcurrentMode = isConcurrentMode;
+    exports.isContextConsumer = isContextConsumer;
+    exports.isContextProvider = isContextProvider;
+    exports.isElement = isElement;
+    exports.isForwardRef = isForwardRef;
+    exports.isFragment = isFragment;
+    exports.isLazy = isLazy;
+    exports.isMemo = isMemo;
+    exports.isPortal = isPortal;
+    exports.isProfiler = isProfiler;
+    exports.isStrictMode = isStrictMode;
+    exports.isSuspense = isSuspense;
+    exports.isValidElementType = isValidElementType;
+    exports.typeOf = typeOf;
+  })();
 }
+},{}],"node_modules/react-is/index.js":[function(require,module,exports) {
+'use strict';
 
-var _default = PostElement;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../components/UseContextWithReducer":"components/UseContextWithReducer.js"}],"node_modules/shallowequal/index.js":[function(require,module,exports) {
+if ("development" === 'production') {
+  module.exports = require('./cjs/react-is.production.min.js');
+} else {
+  module.exports = require('./cjs/react-is.development.js');
+}
+},{"./cjs/react-is.development.js":"node_modules/react-is/cjs/react-is.development.js"}],"node_modules/shallowequal/index.js":[function(require,module,exports) {
 //
 
 module.exports = function shallowEqual(objA, objB, compare, compareContext) {
@@ -36102,28 +36675,20 @@ exports.ServerStyleSheet = Ue;
 "production" !== "development" && "undefined" != typeof navigator && "ReactNative" === navigator.product && console.warn("It looks like you've imported 'styled-components' on React Native.\nPerhaps you're looking to import 'styled-components/native'?\nRead more about this at https://www.styled-components.com/docs/basics#react-native"), "production" !== "development" && "test" !== "development" && (window["__styled-components-init__"] = window["__styled-components-init__"] || 0, 1 === window["__styled-components-init__"] && console.warn("It looks like there are several instances of 'styled-components' initialized in this application. This may cause dynamic styles to not render properly, errors during the rehydration process, a missing theme prop, and makes your application bigger without good reason.\n\nSee https://s-c.sh/2BAXzed for more info."), window["__styled-components-init__"] += 1);
 var _default = qe;
 exports.default = _default;
-},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"pages/UserPost.js":[function(require,module,exports) {
+},{"react-is":"node_modules/react-is/index.js","react":"node_modules/react/index.js","shallowequal":"node_modules/shallowequal/index.js","@emotion/stylis":"node_modules/@emotion/stylis/dist/stylis.browser.esm.js","@emotion/unitless":"node_modules/@emotion/unitless/dist/unitless.browser.esm.js","@emotion/is-prop-valid":"node_modules/@emotion/is-prop-valid/dist/is-prop-valid.browser.esm.js","hoist-non-react-statics":"node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js","process":"../../AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"components/Styles.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
+exports.FormStyle = void 0;
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _UseContextWithReducer = require("../components/UseContextWithReducer");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    img {\n        width: 50px;\n        height: 50px;\n    }\n    display: flex;\n    gap: 20px\n"]);
+  var data = _taggedTemplateLiteral(["\n\tdisplay: grid;\n\tgap: 10px;\n\ttextarea {\n\t\theight: 100px;\n\t}\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -36134,26 +36699,10 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var UserStyle = _styledComponents.default.div(_templateObject());
+var FormStyle = _styledComponents.default.form(_templateObject());
 
-function UserPost() {
-  var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
-      state = _useContext.state,
-      dispatch = _useContext.dispatch;
-
-  var currentUser = state.userData.find(function (user) {
-    return user.userId === state.currentUser;
-  });
-  return /*#__PURE__*/_react.default.createElement(UserStyle, null, /*#__PURE__*/_react.default.createElement("img", {
-    className: "photo-profile",
-    src: currentUser.photoProfil,
-    alt: currentUser.userName
-  }), /*#__PURE__*/_react.default.createElement("p", null, currentUser.userName));
-}
-
-var _default = UserPost;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../components/UseContextWithReducer":"components/UseContextWithReducer.js"}],"components/AddPost.js":[function(require,module,exports) {
+exports.FormStyle = FormStyle;
+},{"styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/AddPost.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36161,86 +36710,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = AddPost;
 
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function AddPost(_ref) {
-  var children = _ref.children;
-  return /*#__PURE__*/_react.default.createElement("div", null, children);
-}
-},{"react":"node_modules/react/index.js"}],"pages/CommentContent.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
 var _react = _interopRequireWildcard(require("react"));
 
-var _styledComponents = _interopRequireDefault(require("styled-components"));
+var _Context = require("./Context");
 
-var _UseContextWithReducer = require("../components/UseContextWithReducer");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n\tdisplay: flex;\n\tflex-direction: row;\n\tgap: 15px;\n\talign-items: center;\n\timg {\n\t\twidth: 35px;\n\t\theight: 35px;\n\t\tborder-radius: 50%;\n    }\n}"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
-
-var ProfileLinkStyles = _styledComponents.default.div(_templateObject());
-
-function Comments() {
-  var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
-      state = _useContext.state,
-      dispatch = _useContext.dispatch;
-
-  console.log(state);
-  var findComment = state.postData.find(function (post) {
-    return post.postId === state.currentUser;
-  });
-  var user = state.userData.find(function (user) {
-    return user.userId === state.currentUser;
-  });
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "comment-container"
-  }, findComment.comments.map(function (comment) {
-    return /*#__PURE__*/_react.default.createElement("div", {
-      key: comment.commentId
-    }, /*#__PURE__*/_react.default.createElement(ProfileLinkStyles, null, /*#__PURE__*/_react.default.createElement("img", {
-      className: "photo-profile",
-      src: user.photoProfil,
-      alt: user.userName
-    }), /*#__PURE__*/_react.default.createElement("p", null, user.userName)), /*#__PURE__*/_react.default.createElement("p", null, comment.textComment));
-  }));
-}
-
-var _default = Comments;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../components/UseContextWithReducer":"components/UseContextWithReducer.js"}],"components/AddComment.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _UseContextWithReducer = require("./UseContextWithReducer");
+var _Styles = require("./Styles");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -36258,215 +36732,80 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function AddComment() {
+function AddPost() {
   var _useState = (0, _react.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
-      newComment = _useState2[0],
-      setComment = _useState2[1];
+      postContent = _useState2[0],
+      setPostContent = _useState2[1];
 
-  var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
+  var _useState3 = (0, _react.useState)('http://picsum.photos/100'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      postImage = _useState4[0],
+      setPostImage = _useState4[1];
+
+  var _useContext = (0, _react.useContext)(_Context.GlobalContext),
       state = _useContext.state,
       dispatch = _useContext.dispatch;
 
-  var allPosts = state.postData.find(function (post) {
-    return post;
-  });
-  console.log(allPosts.comments);
+  var currentUser = state.currentUser;
 
-  function handleSubmitComment(e) {
+  function createNewPost(e) {
     e.preventDefault();
-    var form = e.target;
-    var newComment = {
-      textComment: newComment,
-      commentId: "1606725399303",
-      date: 1606779068327
+    var newPost = {
+      postId: Date.now(),
+      date: new Date(),
+      postTextContent: postContent,
+      userId: currentUser,
+      imgUrl: postImage,
+      likes: [],
+      comments: []
     };
     dispatch({
-      type: "ADD_COMMENT",
-      newComments: newComment
+      type: 'ADD_NEW_POST',
+      newPost: newPost
     });
-    form.reset();
+    resetForm();
+    alert('Post added.');
   }
 
-  return /*#__PURE__*/_react.default.createElement("form", {
-    className: "add-comment",
-    onSubmit: handleSubmitComment
-  }, /*#__PURE__*/_react.default.createElement("label", null, "Add a comment"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("textarea", {
-    name: "commentText",
-    rows: "2",
-    value: newComment,
+  function resetForm() {
+    setPostContent('');
+    setPostImage('');
+  }
+
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "Add a post"), /*#__PURE__*/_react.default.createElement(_Styles.FormStyle, {
+    onSubmit: createNewPost
+  }, /*#__PURE__*/_react.default.createElement("label", null, "New post content:"), /*#__PURE__*/_react.default.createElement("textarea", {
+    placeholder: "Say what's on your mind...",
+    value: postContent,
     onChange: function onChange(e) {
-      return setComment(e.target.value);
-    }
-  }), /*#__PURE__*/_react.default.createElement("button", null, "Comment")));
+      return setPostContent(e.target.value);
+    },
+    required: true
+  }), /*#__PURE__*/_react.default.createElement("label", null, "New post picture :"), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    placeholder: "Paste a picture url here",
+    value: postImage,
+    onChange: function onChange(e) {
+      return setPostImage(e.target.value);
+    },
+    required: true
+  }), /*#__PURE__*/_react.default.createElement("button", null, "Post")));
 }
-
-var _default = AddComment;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","./UseContextWithReducer":"components/UseContextWithReducer.js"}],"pages/LikeContent.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Context":"components/Context.js","./Styles":"components/Styles.js"}],"components/Post/Post.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.Post = Post;
+exports.PostContext = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
-
-var _UseContextWithReducer = require("../components/UseContextWithReducer");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function LikeContent(_ref) {
-  var totalLike = _ref.totalLike,
-      userId = _ref.userId,
-      onClick = _ref.onClick;
-
-  var _useReducer = (0, _react.useReducer)(_UseContextWithReducer.AppContext),
-      state = _useReducer.state,
-      dispatch = _useReducer.dispatch;
-
-  console.log(dispatch);
-
-  function handleLikeClick() {
-    console.log("clicked");
-    dispatch({
-      type: 'LIKES'
-    });
-  }
-
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "likes"
-  }, /*#__PURE__*/_react.default.createElement("span", null, totalLike, " \uD83D\uDC4D"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
-    onClick: handleLikeClick,
-    value: userId
-  }, "Like"));
-}
-
-var _default = LikeContent;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../components/UseContextWithReducer":"components/UseContextWithReducer.js"}],"components/displayPost.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _CommentContent = _interopRequireDefault(require("../pages/CommentContent"));
-
-var _AddComment = _interopRequireDefault(require("./AddComment"));
-
-var _LikeContent = _interopRequireDefault(require("../pages/LikeContent"));
-
-var _PostTemplate = _interopRequireDefault(require("../pages/PostTemplate"));
-
-var _UseContextWithReducer = require("./UseContextWithReducer");
-
-var _PostElement = _interopRequireDefault(require("../pages/PostElement"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function DisplayPost(_ref) {
-  var children = _ref.children;
-
-  var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
-      postData = _useContext.postData,
-      userData = _useContext.userData,
-      state = _useContext.state,
-      dispatch = _useContext.dispatch;
-
-  return /*#__PURE__*/_react.default.createElement("div", null, children);
-}
-
-var _default = DisplayPost;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../pages/CommentContent":"pages/CommentContent.js","./AddComment":"components/AddComment.js","../pages/LikeContent":"pages/LikeContent.js","../pages/PostTemplate":"pages/PostTemplate.js","./UseContextWithReducer":"components/UseContextWithReducer.js","../pages/PostElement":"pages/PostElement.js"}],"pages/PostTemplate.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _displayPost = require("../components/displayPost");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function PostTemplate(_ref) {
-  var children = _ref.children;
-  return /*#__PURE__*/_react.default.createElement("div", null, children);
-}
-
-var _default = PostTemplate;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../components/displayPost":"components/displayPost.js"}],"components/DisplayPost.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _CommentContent = _interopRequireDefault(require("../pages/CommentContent"));
-
-var _AddComment = _interopRequireDefault(require("./AddComment"));
-
-var _LikeContent = _interopRequireDefault(require("../pages/LikeContent"));
-
-var _PostTemplate = _interopRequireDefault(require("../pages/PostTemplate"));
-
-var _UseContextWithReducer = require("./UseContextWithReducer");
-
-var _PostElement = _interopRequireDefault(require("../pages/PostElement"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function DisplayPost(_ref) {
-  var children = _ref.children;
-
-  var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
-      postData = _useContext.postData,
-      userData = _useContext.userData,
-      state = _useContext.state,
-      dispatch = _useContext.dispatch;
-
-  return /*#__PURE__*/_react.default.createElement("div", null, children);
-}
-
-var _default = DisplayPost;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../pages/CommentContent":"pages/CommentContent.js","./AddComment":"components/AddComment.js","../pages/LikeContent":"pages/LikeContent.js","../pages/PostTemplate":"pages/PostTemplate.js","./UseContextWithReducer":"components/UseContextWithReducer.js","../pages/PostElement":"pages/PostElement.js"}],"components/Header.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _reactRouterDom = require("react-router-dom");
 
 var _styledComponents = _interopRequireDefault(require("styled-components"));
 
-var _UseContextWithReducer = require("./UseContextWithReducer");
+var _Context = require("../Context");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36475,7 +36814,7 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: space-between;\n\tgap: 15px;\n\talign-items: center;\n\timg {\n\t\twidth: 35px;\n\t\theight: 35px;\n\t\tborder-radius: 50%;\n    }\n}"]);
+  var data = _taggedTemplateLiteral(["\n\t.main-picture {\n\t\twidth: 100%;\n\t}\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -36486,34 +36825,403 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var ProfileLinkStyles = _styledComponents.default.div(_templateObject());
+var PostStyles = _styledComponents.default.div(_templateObject());
 
-function Header(_ref) {
-  var id = _ref.id;
+var PostContext = (0, _react.createContext)();
+exports.PostContext = PostContext;
 
-  var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
+function Post(_ref) {
+  var post = _ref.post,
+      children = _ref.children;
+
+  var _useContext = (0, _react.useContext)(_Context.GlobalContext),
+      state = _useContext.state;
+
+  var users = state.users,
+      currentUser = state.currentUser;
+  var currentUserObj = users.find(function (user) {
+    return user.userId === currentUser;
+  });
+  return /*#__PURE__*/_react.default.createElement(PostContext.Provider, {
+    value: {
+      post: post,
+      currentUserObj: currentUserObj
+    }
+  }, /*#__PURE__*/_react.default.createElement(PostStyles, null, children));
+}
+},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../Context":"components/Context.js"}],"components/Post/PostHeader.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = PostHeader;
+exports.ContentHeaderStyles = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Post = require("./Post");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n\tdisplay: grid;\n\tgap: 20px;\n\tgrid-template-columns: auto 1fr 1fr;\n\talign-items: center;\n\t.post-date {\n\t\ttext-align: right;\n\t}\n\timg {\n\t\twidth: 35px;\n\t\theight: 35px;\n\t\tborder-radius: 50%;\n\t}\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var ContentHeaderStyles = _styledComponents.default.div(_templateObject());
+
+exports.ContentHeaderStyles = ContentHeaderStyles;
+
+function PostHeader() {
+  var _useContext = (0, _react.useContext)(_Post.PostContext),
+      post = _useContext.post,
+      currentUserObj = _useContext.currentUserObj;
+
+  return /*#__PURE__*/_react.default.createElement(ContentHeaderStyles, null, /*#__PURE__*/_react.default.createElement("img", {
+    src: currentUserObj.profilePictureUrl,
+    alt: "profile pic of ".concat(currentUserObj.userName)
+  }), /*#__PURE__*/_react.default.createElement("span", null, currentUserObj.userName), /*#__PURE__*/_react.default.createElement("span", {
+    className: "post-date"
+  }, new Date(post.date).toLocaleDateString()));
+}
+},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","./Post":"components/Post/Post.js"}],"components/Post/PostDescription.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = PostDescription;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function PostDescription(_ref) {
+  var children = _ref.children;
+  return /*#__PURE__*/_react.default.createElement("div", null, children);
+}
+},{"react":"node_modules/react/index.js"}],"components/Post/PostImage.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = PostImage;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _Post = require("./Post");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function PostImage() {
+  var _useContext = (0, _react.useContext)(_Post.PostContext),
+      post = _useContext.post;
+
+  return /*#__PURE__*/_react.default.createElement("img", {
+    className: "main-picture",
+    src: post.imgUrl,
+    alt: "Post picture - ".concat(post.postTextContent)
+  });
+}
+},{"react":"node_modules/react/index.js","./Post":"components/Post/Post.js"}],"components/Post/PostComments.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = PostComments;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Post = require("./Post");
+
+var _Context = require("../Context");
+
+var _PostHeader = require("./PostHeader");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n\tdisplay: grid;\n\tgap: 10px;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var PostCommentContainerStyles = _styledComponents.default.div(_templateObject());
+
+function PostComments() {
+  var _useContext = (0, _react.useContext)(_Post.PostContext),
+      post = _useContext.post;
+
+  var _useContext2 = (0, _react.useContext)(_Context.GlobalContext),
+      state = _useContext2.state;
+
+  var users = state.users;
+  return /*#__PURE__*/_react.default.createElement(PostCommentContainerStyles, null, /*#__PURE__*/_react.default.createElement("div", null, post.comments.map(function (comment) {
+    var commenter = users.find(function (user) {
+      return user.userId === comment.userId;
+    });
+    return /*#__PURE__*/_react.default.createElement("div", {
+      key: comment.commentId
+    }, /*#__PURE__*/_react.default.createElement(_PostHeader.ContentHeaderStyles, null, /*#__PURE__*/_react.default.createElement("img", {
+      src: commenter.profilePictureUrl,
+      alt: "profile pic of ".concat(commenter.userName)
+    }), /*#__PURE__*/_react.default.createElement("span", null, commenter.userName), /*#__PURE__*/_react.default.createElement("span", {
+      className: "post-date"
+    }, new Date(comment.date).toLocaleDateString())), /*#__PURE__*/_react.default.createElement("p", null, comment.commentTextContent));
+  })));
+}
+},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","./Post":"components/Post/Post.js","../Context":"components/Context.js","./PostHeader":"components/Post/PostHeader.js"}],"components/Post/PostLikes.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = PostLikes;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Post = require("./Post");
+
+var _Context = require("../Context");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n\tdisplay: flex;\n\tgap: 10px;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var PostLikesStyles = _styledComponents.default.div(_templateObject());
+
+function PostLikes() {
+  var _useContext = (0, _react.useContext)(_Context.GlobalContext),
       state = _useContext.state,
       dispatch = _useContext.dispatch;
 
-  var currentUser = state.userData.find(function (user) {
-    return user.userId === state.currentUser;
-  });
-  return /*#__PURE__*/_react.default.createElement("header", {
-    className: "header"
-  }, /*#__PURE__*/_react.default.createElement("h1", null, "OnjaBook"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, "Feed"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/addPost"
-  }, "Add a post"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/user"
-  }, /*#__PURE__*/_react.default.createElement(ProfileLinkStyles, null, /*#__PURE__*/_react.default.createElement("span", null, currentUser.userName), /*#__PURE__*/_react.default.createElement("img", {
-    src: currentUser.photoProfil
-  }))));
+  var _useContext2 = (0, _react.useContext)(_Post.PostContext),
+      post = _useContext2.post;
+
+  var currentUser = state.currentUser;
+
+  function checkIfLikedOrNot() {
+    return post.likes.some(function (like) {
+      return like.userId === currentUser;
+    });
+  }
+
+  function likePost() {
+    var newLike = {
+      likeId: Date.now(),
+      userId: currentUser
+    };
+    dispatch({
+      type: 'LIKE_POST',
+      newLike: newLike,
+      postId: post.postId
+    });
+  }
+
+  function unlikePost() {
+    dispatch({
+      type: 'UNLIKE_POST',
+      postId: post.postId
+    });
+  }
+
+  return /*#__PURE__*/_react.default.createElement(PostLikesStyles, null, checkIfLikedOrNot() ? /*#__PURE__*/_react.default.createElement("button", {
+    onClick: unlikePost
+  }, "UnLike") : /*#__PURE__*/_react.default.createElement("button", {
+    onClick: likePost
+  }, "Like"), /*#__PURE__*/_react.default.createElement("span", null, post.likes.length));
+}
+},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","./Post":"components/Post/Post.js","../Context":"components/Context.js"}],"components/Post/PostAddComment.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = PostAddComment;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Context = require("../Context");
+
+var _Post = require("./Post");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n\tdisplay: flex;\n\tgrid-gap: 10px;\n\tjustify-content: space-between;\n\tbackground: #c4c4c4;\n\tpadding: 0.6rem;\n\tborder-radius: 10px;\n\tinput {\n\t\tbackground: none;\n\t\tborder: none;\n\t\twidth: 100%;\n\t}\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
 }
 
-var _default = Header;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","./UseContextWithReducer":"components/UseContextWithReducer.js"}],"components/ProfileOption.js":[function(require,module,exports) {
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var AddCommentFormStyles = _styledComponents.default.form(_templateObject());
+
+function PostAddComment() {
+  var _useState = (0, _react.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      newCommentText = _useState2[0],
+      setNewComment = _useState2[1];
+
+  var _useContext = (0, _react.useContext)(_Context.GlobalContext),
+      state = _useContext.state,
+      dispatch = _useContext.dispatch;
+
+  var _useContext2 = (0, _react.useContext)(_Post.PostContext),
+      post = _useContext2.post;
+
+  var currentUser = state.currentUser;
+
+  function addComment(e) {
+    e.preventDefault();
+    var newComment = {
+      commentId: Date.now(),
+      userId: currentUser,
+      date: Date.now(),
+      commentTextContent: newCommentText
+    }; // Add a new dispatch action "ADD POST" (very similar to add like)
+
+    dispatch({
+      type: 'ADD_COMMENT_TO_POST',
+      postId: post.postId,
+      newComment: newComment
+    });
+    setNewComment('');
+  }
+
+  return /*#__PURE__*/_react.default.createElement(AddCommentFormStyles, {
+    onSubmit: addComment
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    value: newCommentText,
+    onChange: function onChange(e) {
+      return setNewComment(e.target.value);
+    },
+    placeholder: "Type your comment here",
+    required: true
+  }), /*#__PURE__*/_react.default.createElement("button", null, "Post"));
+}
+},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","../Context":"components/Context.js","./Post":"components/Post/Post.js"}],"components/Feed.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Feed;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+var _Context = require("./Context");
+
+var _Post = require("./Post/Post");
+
+var _PostHeader = _interopRequireDefault(require("./Post/PostHeader"));
+
+var _PostDescription = _interopRequireDefault(require("./Post/PostDescription"));
+
+var _PostImage = _interopRequireDefault(require("./Post/PostImage"));
+
+var _PostComments = _interopRequireDefault(require("./Post/PostComments"));
+
+var _PostLikes = _interopRequireDefault(require("./Post/PostLikes"));
+
+var _PostAddComment = _interopRequireDefault(require("./Post/PostAddComment"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+// const FeedListStyle = styled.div`
+// 	display: grid;
+// 	gap: 120px;
+// `;
+function Feed() {
+  var _useContext = (0, _react.useContext)(_Context.GlobalContext),
+      state = _useContext.state,
+      dispatch = _useContext.dispatch;
+
+  var posts = state.posts,
+      loading = state.loading;
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h2", null, "Feed"), loading && /*#__PURE__*/_react.default.createElement("p", null, "Loading..."), !loading && posts && /*#__PURE__*/_react.default.createElement("div", null, posts.map(function (post) {
+    return /*#__PURE__*/_react.default.createElement(_Post.Post, {
+      key: post.postId,
+      post: post
+    }, /*#__PURE__*/_react.default.createElement(_PostHeader.default, null), /*#__PURE__*/_react.default.createElement(_PostDescription.default, null, post.postTextContent), /*#__PURE__*/_react.default.createElement(_PostImage.default, null), /*#__PURE__*/_react.default.createElement(_PostLikes.default, null), /*#__PURE__*/_react.default.createElement(_PostComments.default, null), /*#__PURE__*/_react.default.createElement(_PostAddComment.default, null));
+  })));
+}
+},{"react":"node_modules/react/index.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js","./Context":"components/Context.js","./Post/Post":"components/Post/Post.js","./Post/PostHeader":"components/Post/PostHeader.js","./Post/PostDescription":"components/Post/PostDescription.js","./Post/PostImage":"components/Post/PostImage.js","./Post/PostComments":"components/Post/PostComments.js","./Post/PostLikes":"components/Post/PostLikes.js","./Post/PostAddComment":"components/Post/PostAddComment.js"}],"components/ProfileOptions.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36523,7 +37231,9 @@ exports.default = ProfileOptions;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _UseContextWithReducer = require("./UseContextWithReducer");
+var _Context = require("./Context");
+
+var _Styles = require("./Styles");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -36542,11 +37252,11 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function ProfileOptions() {
-  var _useContext = (0, _react.useContext)(_UseContextWithReducer.AppContext),
+  var _useContext = (0, _react.useContext)(_Context.GlobalContext),
       state = _useContext.state,
       dispatch = _useContext.dispatch;
 
-  var userData = state.userData,
+  var users = state.users,
       currentUser = state.currentUser;
 
   var _useState = (0, _react.useState)(''),
@@ -36556,77 +37266,65 @@ function ProfileOptions() {
 
   var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
-      photoProfil = _useState4[0],
+      profilePictureUrl = _useState4[0],
       setProfilePictureUrl = _useState4[1]; // we get the full current user object back, so we have a name and picture instead of just an id
 
 
-  var currentUserObj = userData.find(function (user) {
+  var currentUserObj = users.find(function (user) {
     return user.userId === currentUser;
   }) || {
     userName: '',
-    photoProfil: ''
-  }; // at the beginning, the userData array will be empty. so we want to update our inputs with the good values when it will be updated!
+    profilePictureUrl: ''
+  }; // at the beginning, the users array will be empty. so we want to update our inputs with the good values when it will be updated!
 
   (0, _react.useEffect)(function () {
     setUserName(currentUserObj.userName);
-    setProfilePictureUrl(currentUserObj.photoProfil);
-  }, [userData]);
+    setProfilePictureUrl(currentUserObj.profilePictureUrl);
+  }, [users]);
 
-  function handleNewOptions(e) {
+  function updateUserOptions(e) {
     e.preventDefault();
     dispatch({
       type: 'UPDATE_CURRENT_USER',
       userName: userName,
-      photoProfil: photoProfil
+      profilePictureUrl: profilePictureUrl
     });
     alert('Profile updated successfully');
   }
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "Profile Options"), /*#__PURE__*/_react.default.createElement("form", {
-    onSubmit: handleNewOptions
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "Profile Options"), /*#__PURE__*/_react.default.createElement(_Styles.FormStyle, {
+    onSubmit: updateUserOptions
   }, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     value: userName,
     onChange: function onChange(e) {
       return setUserName(e.target.value);
-    }
+    },
+    required: true
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "url",
-    value: photoProfil,
+    value: profilePictureUrl,
     onChange: function onChange(e) {
       return setProfilePictureUrl(e.target.value);
-    }
+    },
+    required: true
   }), /*#__PURE__*/_react.default.createElement("button", null, "Save")));
 }
-},{"react":"node_modules/react/index.js","./UseContextWithReducer":"components/UseContextWithReducer.js"}],"components/App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./Context":"components/Context.js","./Styles":"components/Styles.js"}],"components/Menu.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = Menu;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _Context = require("./Context");
+
 var _reactRouterDom = require("react-router-dom");
 
-var _AddPostElem = _interopRequireDefault(require("../pages/AddPostElem"));
-
-var _PostElement = _interopRequireDefault(require("../pages/PostElement"));
-
-var _UserPost = _interopRequireDefault(require("../pages/UserPost"));
-
-var _AddPost = _interopRequireDefault(require("./AddPost"));
-
-var _DisplayPost = _interopRequireDefault(require("./DisplayPost"));
-
-var _Header = _interopRequireDefault(require("./Header"));
-
-var _CommentContent = _interopRequireDefault(require("../pages/CommentContent"));
-
-var _AddComment = _interopRequireDefault(require("./AddComment"));
-
-var _ProfileOption = _interopRequireDefault(require("./ProfileOption"));
+var _styledComponents = _interopRequireDefault(require("styled-components"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36634,22 +37332,101 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function App() {
-  return /*#__PURE__*/_react.default.createElement("article", null, /*#__PURE__*/_react.default.createElement(_Header.default, null), /*#__PURE__*/_react.default.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
-    exact: true,
-    path: "/"
-  }, /*#__PURE__*/_react.default.createElement(_DisplayPost.default, null, /*#__PURE__*/_react.default.createElement(_UserPost.default, null), /*#__PURE__*/_react.default.createElement(_PostElement.default, null), /*#__PURE__*/_react.default.createElement(_CommentContent.default, null), /*#__PURE__*/_react.default.createElement(_AddComment.default, null))), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
-    path: "/addPost"
-  }, /*#__PURE__*/_react.default.createElement(_AddPost.default, null, /*#__PURE__*/_react.default.createElement(_AddPostElem.default, null))), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
-    path: "/user"
-  }, /*#__PURE__*/_react.default.createElement(_ProfileOption.default, null)))));
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n\tdisplay: flex;\n\tflex-direction: row;\n\tjustify-content: space-between;\n\tgap: 15px;\n\talign-items: center;\n\timg {\n\t\twidth: 35px;\n\t\theight: 35px;\n\t\tborder-radius: 50%;\n\t}\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
 }
 
-var _default = App;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../pages/AddPostElem":"pages/AddPostElem.js","../pages/PostElement":"pages/PostElement.js","../pages/UserPost":"pages/UserPost.js","./AddPost":"components/AddPost.js","./DisplayPost":"components/DisplayPost.js","./Header":"components/Header.js","../pages/CommentContent":"pages/CommentContent.js","./AddComment":"components/AddComment.js","./ProfileOption":"components/ProfileOption.js"}],"index.js":[function(require,module,exports) {
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n\tul\xA0 {\n\t\tdisplay: flex;\n\t\tflex-direction: row;\n\t\tjustify-content: space-between;\n\t\talign-items: center;\n\t\tlist-style: none;\n\t\tpadding: 0;\n\t\tmargin: 0;\n\t}\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var NavStyles = _styledComponents.default.nav(_templateObject());
+
+var ProfileLinkStyles = _styledComponents.default.div(_templateObject2());
+
+function Menu() {
+  var _useContext = (0, _react.useContext)(_Context.GlobalContext),
+      state = _useContext.state;
+
+  var users = state.users,
+      currentUser = state.currentUser;
+  var currentUserObj = users.find(function (user) {
+    return user.userId === currentUser;
+  });
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(NavStyles, null, /*#__PURE__*/_react.default.createElement("ul", null, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, "Feed")), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/add"
+  }, "Add a post")), /*#__PURE__*/_react.default.createElement("li", null, !currentUserObj && 'Loading...', currentUserObj && /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/options"
+  }, /*#__PURE__*/_react.default.createElement(ProfileLinkStyles, null, /*#__PURE__*/_react.default.createElement("span", null, currentUserObj.userName), /*#__PURE__*/_react.default.createElement("img", {
+    src: currentUserObj.profilePictureUrl,
+    alt: "Profile pic of ".concat(currentUserObj.userName)
+  })))))));
+}
+},{"react":"node_modules/react/index.js","./Context":"components/Context.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"components/App.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = App;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _AddPost = _interopRequireDefault(require("./AddPost"));
+
+var _Feed = _interopRequireDefault(require("./Feed"));
+
+var _ProfileOptions = _interopRequireDefault(require("./ProfileOptions"));
+
+var _Menu = _interopRequireDefault(require("./Menu"));
+
+var _styledComponents = _interopRequireDefault(require("styled-components"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n\tmax-width: 400px;\n\tmargin: auto;\n\tpadding: 1rem;\n\tborder: 1px solid;\n\tborder-radius: 8px;\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+var ArticleStyle = _styledComponents.default.article(_templateObject());
+
+function App() {
+  return /*#__PURE__*/_react.default.createElement(ArticleStyle, null, /*#__PURE__*/_react.default.createElement("h1", null, "Facebook Clone"), /*#__PURE__*/_react.default.createElement(_Menu.default, null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: "/",
+    exact: true
+  }, /*#__PURE__*/_react.default.createElement(_Feed.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: "/add"
+  }, /*#__PURE__*/_react.default.createElement(_AddPost.default, null)), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: "/options"
+  }, /*#__PURE__*/_react.default.createElement(_ProfileOptions.default, null))));
+}
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./AddPost":"components/AddPost.js","./Feed":"components/Feed.js","./ProfileOptions":"components/ProfileOptions.js","./Menu":"components/Menu.js","styled-components":"node_modules/styled-components/dist/styled-components.browser.esm.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -36660,12 +37437,12 @@ var _App = _interopRequireDefault(require("./components/App"));
 
 var _reactRouterDom = require("react-router-dom");
 
-var _UseContextWithReducer = require("./components/UseContextWithReducer");
+var _Context = require("./components/Context");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_UseContextWithReducer.UseContextWithReducer, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_App.default, null))), document.getElementById('root'));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/App":"components/App.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/UseContextWithReducer":"components/UseContextWithReducer.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+_reactDom.default.render( /*#__PURE__*/_react.default.createElement(_Context.GlobalContextProvider, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_App.default, null))), document.getElementById('root'));
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/App":"components/App.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","./components/Context":"components/Context.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -36693,7 +37470,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60715" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50310" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
