@@ -23,7 +23,6 @@ export default function AddPost() {
 		};
 		dispatch({ type: 'ADD_NEW_POST', newPost: newPost });
 		resetForm();
-		alert('Post added.');
 	}
 
 	function resetForm() {

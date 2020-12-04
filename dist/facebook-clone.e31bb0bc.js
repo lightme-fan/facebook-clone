@@ -36765,7 +36765,6 @@ function AddPost() {
       newPost: newPost
     });
     resetForm();
-    alert('Post added.');
   }
 
   function resetForm() {
@@ -37203,10 +37202,6 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-// const FeedListStyle = styled.div`
-// 	display: grid;
-// 	gap: 120px;
-// `;
 function Feed() {
   var _useContext = (0, _react.useContext)(_Context.GlobalContext),
       state = _useContext.state,
@@ -37267,16 +37262,14 @@ function ProfileOptions() {
   var _useState3 = (0, _react.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       profilePictureUrl = _useState4[0],
-      setProfilePictureUrl = _useState4[1]; // we get the full current user object back, so we have a name and picture instead of just an id
-
+      setProfilePictureUrl = _useState4[1];
 
   var currentUserObj = users.find(function (user) {
     return user.userId === currentUser;
   }) || {
     userName: '',
     profilePictureUrl: ''
-  }; // at the beginning, the users array will be empty. so we want to update our inputs with the good values when it will be updated!
-
+  };
   (0, _react.useEffect)(function () {
     setUserName(currentUserObj.userName);
     setProfilePictureUrl(currentUserObj.profilePictureUrl);
@@ -37289,7 +37282,6 @@ function ProfileOptions() {
       userName: userName,
       profilePictureUrl: profilePictureUrl
     });
-    alert('Profile updated successfully');
   }
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "Profile Options"), /*#__PURE__*/_react.default.createElement(_Styles.FormStyle, {
@@ -37470,7 +37462,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50310" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51601" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

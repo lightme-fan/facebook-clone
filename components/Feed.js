@@ -11,11 +11,6 @@ import PostComments from './Post/PostComments';
 import PostLikes from './Post/PostLikes';
 import PostAddComment from './Post/PostAddComment';
 
-// const FeedListStyle = styled.div`
-// 	display: grid;
-// 	gap: 120px;
-// `;
-
 export default function Feed() {
 	const { state, dispatch } = useContext(GlobalContext);
 	const { posts, loading } = state;
